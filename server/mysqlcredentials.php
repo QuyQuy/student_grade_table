@@ -1,6 +1,6 @@
 <?php
 
 
-$db = mysqli_connect('localhost', 'root', 'root','SGT',3306 );
+$db = mysqli_connect('localhost', 'root', 'root','c1018qb',3306 );
 
 ?>

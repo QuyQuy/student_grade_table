@@ -39,7 +39,7 @@ function initializeApp(){
 function getData() {
     var ajaxOptions = {
         // url: 'http://s-apis.learningfuze.com/sgt/get',
-        url: "http://localhost:8888/scratchpad_backend/php_intro/getstudents.php",
+        url: "http://localhost:8888/student_grade_table/server/getstudents.php",
         method: 'post',
         dataType: 'json',
         data: {

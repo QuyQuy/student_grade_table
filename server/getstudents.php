@@ -1,8 +1,16 @@
 <?php
 
+//print_r( $_GET['course']);
+//exit();
+
 require_once('mysqlcredentials.php');
 
-$query = "SELECT * FROM `students`";
+$query =  "SELECT * FROM `students`";
+if( !empty( $_GET['course'])  ) {
+    $course = addslashes($_GET['course'] );
+    $query .= " WHERE `course` = '{$course}' ";
+}
+
 
 
 $result = mysqli_query($db, $query);

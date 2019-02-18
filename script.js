@@ -99,7 +99,7 @@ function addStudent(){
     };
 
     var newStudentData = {
-        url: 'http://s-apis.learningfuze.com/sgt/create',
+        url: 'http://localhost:8888/student_grade_table/server/createstudent.php',
         method: 'post',
         dataType: 'json',
         data: {
@@ -211,6 +211,7 @@ function calculateGradeAverage(){
     var average = totalGrade / student_array.length;
     // $('.avgGrade').append(totalGrade);
 
+
     renderGradeAverage(average);
 }
 /***************************************************************************************************
@@ -219,9 +220,12 @@ function calculateGradeAverage(){
  * @returns {undefined} none
  */
 function renderGradeAverage(number) {
-    console.log(number);
-    $('avgGrade').append(number)
+    var grade = number;
+
+    // console.log(number);
+    $('.avgGrade').append(grade);
     console.log(number)
+    console.log('this is the grade', grade)
 }
 function handleGetData() {
     getData();
@@ -234,7 +238,7 @@ function removeStudent(studentId) {
 
 
     var deleteData = {
-        url: 'http://s-apis.learningfuze.com/sgt/delete',
+        url: 'http://localhost:8888/student_grade_table/server/deletestudent.php',
         method: 'post',
         dataType: 'json',
         data: {

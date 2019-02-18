@@ -6,10 +6,13 @@
 require_once('mysqlcredentials.php');
 
 $query =  "SELECT * FROM `students`";
-if( !empty( $_GET['course'])  ) {
-    $course = addslashes($_GET['course'] );
-    $query .= " WHERE `course` = '{$course}' ";
+if( empty( $_GET['course'])  ) {
+   $query = "SELECT * FROM `students`";
+} else {
+    $course = addslashes( $_GET['course']);
+    $query ="SELECT * FROM  `students` WHERE `course`= '{$course}'";
 }
+
 
 
 

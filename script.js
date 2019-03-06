@@ -110,7 +110,7 @@ function addStudent(){
         }
     };
     $.ajax(newStudentData).then(function (response) {
-        console.log(response);
+        console.log("check it yo",response);
         student_array.push(obj);
         obj.id = response.new_id;
         clearAddStudentFormInputs();
@@ -233,8 +233,29 @@ function handleGetData() {
 }
 
 
+// create a function that edits the students.
+//create a modal to edit the user info
+//
+
 
 function removeStudent(studentId) {
+
+    // var row =$(event.delegateTarget);
+    // var id = row.attr('studentId');
+    //
+    // $.ajax({
+    //     url: 'http://localhost:8888/student_grade_table/server/deletestudent.php',
+    //     method: 'post',
+    //     dataType: 'json',
+    //     data: {student_id: id },
+    //     success: result => {
+    //         if (result.success) {
+    //             student_array.splice(studentId, 1);
+    //             updateStudentList(student_array);
+    //         }
+    //         return result.success;
+    //     }
+    // })
 
 
     var deleteData = {
@@ -248,7 +269,11 @@ function removeStudent(studentId) {
 
     };
     $.ajax(deleteData).then(function(response) {
-        console.log(response);
+        console.log('look here',studentId);
+        if(response.success) {
+            student_array.splice(studentId,1)
+        }
+        console.log("herrro",response);
         updateStudentList();
     });
 }

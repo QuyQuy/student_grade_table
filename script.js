@@ -278,6 +278,31 @@ function removeStudent(studentId) {
     });
 }
 
+function validation () {
+   console.log('testing');;
+
+     var grade = document.getElementById("studentGrade").value;
+     var name = document.getElementById("studentName").value;
+     var course = document.getElementById("course").value;
+
+
+
+    if(isNaN(grade) || grade < 0 || grade > 100 || grade =="" ){
+        document.getElementById("demo").innerHTML = "enter a valid grade "
+    }
+
+    if( name = "" || name.length < 2 ||  name.length > 100) {
+        document.getElementById("name-error").innerHTML= 'error'
+
+    }
+    if(course = "" || course.length < 2 || course.length > 10) {
+        document.getElementById("course-error").innerHTML= 'error'
+    }
+    return true;
+
+
+}
+
 
 
 

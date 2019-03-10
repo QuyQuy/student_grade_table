@@ -162,12 +162,21 @@ function renderStudentOnDom(studentObj) {
             }
 
         }
-
+    });
+    var editButton = $('<button>', {
+        type: 'button',
+        text: 'Edit',
+        class: 'btn btn-primary',
+        on: {
+            click: () => {
+                modal(studentId);
+            }
+        }
     });
 
 
 
-    tr.append(name,course,grade,deleteButton);
+    tr.append(name,course,grade,deleteButton,editButton);
     $('#studentContent').append(tr);
 
 }
@@ -279,7 +288,10 @@ function removeStudent(studentId) {
 }
 
 function validation () {
-   console.log('testing');;
+    debugger;
+   console.log('testing');
+   console.log("yo i like kate");
+
 
      var grade = document.getElementById("studentGrade").value;
      var name = document.getElementById("studentName").value;
@@ -288,11 +300,11 @@ function validation () {
 
 
     if(isNaN(grade) || grade < 0 || grade > 100 || grade =="" ){
-        document.getElementById("demo").innerHTML = "enter a valid grade "
+        document.getElementById("demo").innerHTML = "enter a valid grade ";
     }
 
     if( name = "" || name.length < 2 ||  name.length > 100) {
-        document.getElementById("name-error").innerHTML= 'error'
+        document.getElementById("name-error").innerHTML= 'error';
 
     }
     if(course = "" || course.length < 2 || course.length > 10) {
@@ -301,7 +313,15 @@ function validation () {
     return true;
 
 
+
 }
+
+function modal(yup) {
+    console.log('modal')
+    $(".modal-dialog").modal(options);
+
+}
+
 
 
 

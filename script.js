@@ -318,7 +318,7 @@ function validation () {
 
 function modal(yup) {
     console.log('modal')
-    $(".modal-dialog").modal(options);
+    $(".editModal").css('display', 'block');
 
 }
 

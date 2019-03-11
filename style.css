@@ -3,3 +3,17 @@
     height: 100%;
 
 }
+
+.editModal {
+    position: absolute;
+    z-index: 1;
+    left: 368px;
+    top: 131px;
+    height: 370px;
+    width: 610px;
+    background-color: black;
+}
+
+#modal {
+    display: none;
+}

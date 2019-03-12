@@ -317,10 +317,12 @@ function validation () {
 }
 
 function modal(yup) {
-    console.log('modal')
+    console.log('modal');
     $(".editModal").css('display', 'block');
 
+
 }
+
 
 
 

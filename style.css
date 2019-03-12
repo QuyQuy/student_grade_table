@@ -3,3 +3,16 @@
     height: 100%;
 
 }
+
+.editModal {
+    position: absolute;
+    z-index: 1;
+    left: 368px;
+    top: 133px;
+    height: 220px;
+    width: 602px
+}
+
+#modal {
+    display: block;
+}

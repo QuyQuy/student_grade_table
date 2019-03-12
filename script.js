@@ -317,10 +317,12 @@ function validation () {
 }
 
 function modal(yup) {
-    console.log('modal')
-    $(".modal-dialog").modal(options);
+    console.log('modal');
+    $(".editModal").css('display', 'block');
+
 
 }
+
 
 
 

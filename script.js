@@ -166,7 +166,7 @@ function renderStudentOnDom(studentObj) {
     var editButton = $('<button>', {
         type: 'button',
         text: 'Edit',
-        class: 'btn btn-primary',
+        class: 'edit btn btn-primary',
         on: {
             click: () => {
                 modal(studentId);
@@ -288,7 +288,6 @@ function removeStudent(studentId) {
 }
 
 function validation () {
-    debugger;
    console.log('testing');
    console.log("yo i like kate");
 

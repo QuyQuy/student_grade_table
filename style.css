@@ -11,8 +11,34 @@
     top: 133px;
     height: 220px;
     width: 602px
+    display: none;
 }
 
 #modal {
-    display: block;
+    display: none;
+}
+.edit {
+    width: 65px;
+    position: fixed;
+    left: 703px;
+}
+#studentContent {
+    background-color: white;
+}
+td, th {
+    padding: 14px;
+}
+.delete {
+    margin-top: 10px;
+    margin-left: 54px;
+}
+.edit {
+    margin-top: 10px;
+    margin-left: -70px;
+}
+.operations {
+
+}
+.background{
+    background-image: url("https://campus.asu.edu/sites/default/files/styles/asu_spotlight_image/public/general/campus-downtown_0.jpg?itok=Q74uMy2b");
 }

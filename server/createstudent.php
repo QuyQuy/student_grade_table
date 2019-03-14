@@ -24,7 +24,7 @@ if(!is_numeric($_POST['grade'])) {
 } else {
     $grade = intval($_POST['grade']);
     if ($grade > 100 || $grade < 0) {
-        $output['error'] = 'grade must be greater or equal to 0 and less than or equal t0 100';
+        $output['error'] = 'grade must be greater or equal to 0 and less than or equal to 100';
     }
 }
 
@@ -33,7 +33,7 @@ if(!empty( $output['error'])) {
     exit();
 }
 
-$query = "INSERT INTO `students` SET `name`= '{$_POST['name']}', `course` = '{$_POST['course']}', `grade`={$_POST['grade']}";
+$query = "INSERT INTO `students` SET `name`= '{$_POST['name']}', `course` = '{$_POST['course']}', `grade`= '{$_POST['grade']}'";
 
 $result = mysqli_query($db, $query) ;
 

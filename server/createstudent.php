@@ -33,7 +33,7 @@ if(!empty( $output['error'])) {
     exit();
 }
 
-$query = "INSERT INTO `students` SET `name`= '{$_POST['name']}', `course` = '{$_POST['course']}', `grade`={$_POST['grade']}";
+$query = "INSERT INTO `students` SET `name`= '{$_POST['name']}', `course` = '{$_POST['course']}', `grade`= '{$_POST['grade']}'";
 
 $result = mysqli_query($db, $query) ;
 

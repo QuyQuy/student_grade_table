@@ -62,7 +62,8 @@ function getData() {
 function addClickHandlersToElements(){
     $('.btn.btn-success').click(handleAddClicked);
     $('.btn.btn-default').click(handleCancelClick);
-    $('.btn btn-primary').click(handleGetData)
+    $('.btn btn-primary').click(handleGetData);
+    $('.saveEdit').click(editStudent)
 }
 
 /***************************************************************************************************
@@ -241,7 +242,6 @@ function handleGetData() {
 
 }
 
-
 // create a function that edits the students.
 //create a modal to edit the user info
 //
@@ -249,22 +249,6 @@ function handleGetData() {
 
 function removeStudent(studentId) {
 
-    // var row =$(event.delegateTarget);
-    // var id = row.attr('studentId');
-    //
-    // $.ajax({
-    //     url: 'http://localhost:8888/student_grade_table/server/deletestudent.php',
-    //     method: 'post',
-    //     dataType: 'json',
-    //     data: {student_id: id },
-    //     success: result => {
-    //         if (result.success) {
-    //             student_array.splice(studentId, 1);
-    //             updateStudentList(student_array);
-    //         }
-    //         return result.success;
-    //     }
-    // })
 
 
     var deleteData = {
@@ -283,42 +267,115 @@ function removeStudent(studentId) {
             student_array.splice(studentId,1)
         }
         console.log("herrro",response);
-        updateStudentList();
+        // updateStudentList();
+        // getData()
+        // renderStudentOnDom();
+        deleteStudentFromDatabse()
     });
 }
 
-function validation () {
-   console.log('testing');
-   console.log("yo i like kate");
+function deleteStudentFromDatabse() {
+    var ajaxOptions = {
+        // url: 'http://s-apis.learningfuze.com/sgt/get',
+        url: "http://localhost:8888/student_grade_table/server/getstudents.php",
+        method: 'post',
+        dataType: 'json',
+        data: {
+            api_key: 'AQ076PX9UZ'
+        }
+    };
+    $.ajax(ajaxOptions).then(function (response) {
+        console.log('response:',response);
+        student_array = response.data;
+        updateStudentList()
+    })
+}
 
+// function validation () {
+//    console.log('testing');
+//    console.log("yo i like kate");
+//
+//
+//      var grade = document.getElementById("studentGrade").value;
+//      var name = document.getElementById("studentName").value;
+//      var course = document.getElementById("course").value;
+//
+//
+//
+//     if(isNaN(grade) || grade < 0 || grade > 100 || grade =="" ){
+//         document.getElementById("demo").innerHTML = "enter a valid grade ";
+//     }
+//
+//     if( name = "" || name.length < 2 ||  name.length > 100) {
+//         document.getElementById("name-error").innerHTML= 'error';
+//
+//     }
+//     if(course = "" || course.length < 2 || course.length > 10) {
+//         document.getElementById("course-error").innerHTML= 'error'
+//     }
+//     return true;
+//
+//
+//
+// }
 
-     var grade = document.getElementById("studentGrade").value;
-     var name = document.getElementById("studentName").value;
-     var course = document.getElementById("course").value;
+function validateForm() {
+    const tests = [
+        {
 
+            element: "input[name=studentName]",
+            pattern: /^[a-zA-Z0-9 ]{4,}$/,
+            message: 'subject can only be letters or spaces, and must be 4+ characters'
 
+        },
+        {
 
-    if(isNaN(grade) || grade < 0 || grade > 100 || grade =="" ){
-        document.getElementById("demo").innerHTML = "enter a valid grade ";
-    }
+            element: "input[name=course]",
+            pattern: /^[a-zA-Z0-9 ]{4,}$/,
+            message: 'subject can only be letters or spaces, and must be 4+ characters'
 
-    if( name = "" || name.length < 2 ||  name.length > 100) {
-        document.getElementById("name-error").innerHTML= 'error';
+        },
 
-    }
-    if(course = "" || course.length < 2 || course.length > 10) {
-        document.getElementById("course-error").innerHTML= 'error'
-    }
-    return true;
-
-
-
+    ]
 }
 
 function modal(yup) {
     console.log('modal');
     $(".editModal").css('display', 'block');
+    editStudent()
 
+
+
+}
+
+function editStudent(){
+    console.log('edit modal');
+    var obj =  {
+        name:$('#studentName').val(),
+        course:$('#course').val(),
+        grade:$('#studentGrade').val()
+    };
+
+    var editStudentData = {
+        url: 'http://localhost:8888/student_grade_table/server/updatestudent.php',
+        method: 'post',
+        dataType: 'json',
+        data: {
+            api_key: 'AQ076PX9UZ',
+            name:$('#editStudentName').val(),
+            course:$('#editCourse').val(),
+            grade:$('#editStudentGrade').val()
+        }
+
+    };
+    $.ajax(editStudentData).then(function (response) {
+        console.log("edit student response",response);
+        // student_array.push(obj);
+        obj.id = response.new_id;
+        clearAddStudentFormInputs();
+        updateStudentList();
+
+    });
 
 }
 

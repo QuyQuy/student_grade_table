@@ -7,6 +7,32 @@
  */
 $(document).ready(initializeApp);
 
+$(document).on('click', '.saveEdit', function(){
+    console.log ("testing new Edit");
+    var student_id = $(".saveEdit").attr("ID");
+
+    const nameValue = $('#editStudentName').val();
+    const courseValue = $('#editCourse').val();
+    const gradeValue = $('#editStudentGrade').val();
+
+    $.ajax({
+        url: "http://localhost:8888/student_grade_table/server/updatestudent.php",
+        method: "POST",
+        data: {
+            student_id:student_id,
+            name: nameValue,
+            course: courseValue,
+            grade: gradeValue
+        },
+        // dataType:"json",
+        // success:function(data){
+        //     $('#editStudentName').val(data.editStudentName),
+        //     $('#editCourse').val(data.editCourse),
+        //     $('#editStudentGrade').val(data.editStudentGrade);
+        // }
+    })
+});
+
 /**
  * Define all global variables here.
  */
@@ -63,7 +89,7 @@ function addClickHandlersToElements(){
     $('.btn.btn-success').click(handleAddClicked);
     $('.btn.btn-default').click(handleCancelClick);
     $('.btn btn-primary').click(handleGetData);
-    $('.saveEdit').click(editStudent)
+    // $('.saveEdit').click(editStudent)
 }
 
 /***************************************************************************************************
@@ -92,6 +118,7 @@ function handleCancelClick(){
  * @calls clearAddStudentFormInputs, updateStudentList
  */
 function addStudent(){
+    debugger;
     console.log('hey');
     var obj =  {
         name:$('#studentName').val(),
@@ -120,6 +147,9 @@ function addStudent(){
     });
 
 }
+// $('input[name=contactEmail]').val(),
+//     subject: $('input[name=subject]').val(),
+//     message: $('textarea[name=message]').val(),
 
 
 console.log('student Array:', student_array);
@@ -132,6 +162,9 @@ function clearAddStudentFormInputs() {
     //formrounded.val
     $('#course').val("");
     $('#studentGrade').val("");
+    $('#editStudentName').val("")
+    $('#editCourse').val("")
+    $('#editStudentGrade').val("")
 }
 /***************************************************************************************************
  * renderStudentOnDom - take in a student object, create html elements from the values and then append the elements
@@ -167,10 +200,11 @@ function renderStudentOnDom(studentObj) {
     var editButton = $('<button>', {
         type: 'button',
         text: 'Edit',
+        idNumber: studentObj.id,
         class: 'edit btn btn-primary',
         on: {
             click: () => {
-                modal(studentId);
+                modal(studentObj.id);
             }
         }
     });
@@ -319,6 +353,9 @@ function deleteStudentFromDatabse() {
 //
 // }
 
+
+
+
 function validateForm() {
     const tests = [
         {
@@ -335,49 +372,78 @@ function validateForm() {
             message: 'subject can only be letters or spaces, and must be 4+ characters'
 
         },
+        {
 
-    ]
-}
+            element: "input[name=studentGrade]",
+            pattern: /^([1-9]?\d|100)$/,
+            message: 'subject can only be letters or spaces, and must be 4+ characters'
 
-function modal(yup) {
-    console.log('modal');
-    $(".editModal").css('display', 'block');
-    editStudent()
-
-
-
-}
-
-function editStudent(){
-    console.log('edit modal');
-    var obj =  {
-        name:$('#studentName').val(),
-        course:$('#course').val(),
-        grade:$('#studentGrade').val()
-    };
-
-    var editStudentData = {
-        url: 'http://localhost:8888/student_grade_table/server/updatestudent.php',
-        method: 'post',
-        dataType: 'json',
-        data: {
-            api_key: 'AQ076PX9UZ',
-            name:$('#editStudentName').val(),
-            course:$('#editCourse').val(),
-            grade:$('#editStudentGrade').val()
         }
 
-    };
-    $.ajax(editStudentData).then(function (response) {
-        console.log("edit student response",response);
-        // student_array.push(obj);
-        obj.id = response.new_id;
-        clearAddStudentFormInputs();
-        updateStudentList();
 
-    });
+    ]
+    if( tests.length === tests.filter( validateInputAndDisplayError).length){
+        console.log("it worked!");
+        addStudent();
+    }
+}
+
+function validateInputAndDisplayError( incomingTests ){
+    console.log("testing 69");
+    const element = incomingTests.element, pattern = incomingTests.pattern, errorMessage = incomingTests.message;
+    const value = $( element ).val();
+    const result = pattern.test( value );
+    if( !result ){
+        $( element ).next().text( errorMessage );
+    } else {
+        $( element ).next().text('');
+    }
+    return result;
+}
+
+
+
+function modal(ID) {
+
+    console.log('modal');
+    $(".editModal").css('display', 'block');
+    // editStudent()
+    $(".saveEdit").attr("ID", ID);
+
+
 
 }
+//
+// function editStudent(){
+//     console.log('edit modal');
+//     var obj =  {
+//         name:$('#studentName').val(),
+//         course:$('#course').val(),
+//         grade:$('#studentGrade').val()
+//     };
+//
+//     var editStudentData = {
+//         url: 'http://localhost:8888/student_grade_table/server/updatestudent.php',
+//         method: 'post',
+//         dataType: 'json',
+//         data: {
+//             api_key: 'AQ076PX9UZ',
+//             name:$('#editStudentName').val(),
+//             course:$('#editCourse').val(),
+//             grade:$('#editStudentGrade').val()
+//         }
+//
+//     };
+//     $.ajax(editStudentData).then(function (response) {
+//         console.log("edit student response",response);
+//         // student_array.push(obj);
+//         obj.id = response.new_id;
+//         clearAddStudentFormInputs();
+//         updateStudentList();
+//
+//     });
+//
+// }
 
 
 

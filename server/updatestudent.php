@@ -1,4 +1,7 @@
 <?php
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: *");
+header("Content-Type: application/json; charset=UTF-8");
 
 require_once('mysqlcredentials.php');
 
@@ -26,17 +29,20 @@ $output = [
       }
   }
 
+  print($_POST['name']. $_POST['course']. $_POST['grade'].$_POST['student_id']);
+
 
 //$query = "UPDATE `students` SET `name`= '{$_POST['name']}', `course`= '{$_POST['course']}', `grade`= '{$_POST['grade']}' WHERE `id`= {$_POST['id']} ";
-$insertNewStudentQuery = $conn->prepare("UPDATE `students` AS s SET
+$insertNewStudentQuery = $db->prepare("UPDATE `students` AS s SET
                                            s.name = ?, s.course = ?, s.grade = ?
                                            WHERE `id` = ?");
 
-$insertNewStudentQuery->bind_param("ssii", $_POST['name'], $_POST['course'], $_POST['grade'],$_POST['id']);
+$insertNewStudentQuery->bind_param("ssii", $_POST['name'], $_POST['course'], $_POST['grade'],$_POST['student_id']);
 $insertNewStudentQuery->execute();
 $insertNewStudentQuery->store_result();
 
 if($insertNewStudentQuery)
+
 {$output['success']=true;
 
 } else {

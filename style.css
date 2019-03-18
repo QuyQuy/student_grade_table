@@ -33,8 +33,9 @@ td, th {
     margin-left: 54px;
 }
 .edit {
+    position: absolute;
     margin-top: 10px;
-    margin-left: -70px;
+    margin-left: -142px;
 }
 .operations {
 

@@ -33,6 +33,7 @@ $(document).on('click', '.saveEdit', function(){
     })
 });
 
+
 /**
  * Define all global variables here.
  */
@@ -60,17 +61,124 @@ var student_array = [];
 function initializeApp(){
     addClickHandlersToElements();
     getData();
+    // inputValidation();
 }
 
+function validation() {
+    debugger;
+    var name = $("#studentName").val();
+    var course = $("#course").val();
+    var grade = $("#studentGrade").val();
+
+    if(name.length == 0) {
+        namePrompt("Name is required", "name-error", "red");
+        event.preventDefault()
+        return false
+    }
+    if(course.length == 0 ){
+        coursePrompt("course is required", "course-error", "red");
+        event.preventDefault()
+        return false;
+    }
+    if (grade.length == 0) {
+        gradePrompt("Grade is required", "grade-error", "red")
+        event.preventDefault()
+    }
+    if(!name.match(/^([A-Z][a-z]+)\s([A-Z][a-zA-Z-]+)$/)) {
+        event.preventDefault()
+        namePrompt("First and Last Name please", "name-error", "red");
+        return false
+    }
+    if(!course.match(/^[a-zA-Z ]{2,30}$/)) {
+        coursePrompt("Please enter a valid course", "course-error", "red");
+        event.preventDefault()
+        return false
+    }
+    if(!grade.match(/^100$|^\d{0,2}(\.\d{1,2})? *%?$/)) {
+        gradePrompt("Please enter a valid grade", "grade-error", "red");
+        event.preventDefault()
+        return false
+    }
+    namePrompt("name is valid", "name-error", "green");
+    coursePrompt("Course is valid", "course-error", "green");
+    gradePrompt("Grade is valid", "grade-error", "green");
+    return true;
+
+}
+// function nameValidation() {
+//     var name = $("#studentName").val();
+//     if(name.length == 0) {
+//         namePrompt("Name is required", "name-error", "red");
+//         event.preventDefault()
+//         return false
+//     }
+//     if(!name.match(/^([A-Z][a-z]+)\s([A-Z][a-zA-Z-]+)$/)) {
+//         event.preventDefault()
+//         namePrompt("First and Last Name please", "name-error", "red");
+//         return false
+//     }
+//     namePrompt("name is valid", "name-error", "green");
+//     return true;
+//
+//
+// }
+
+function namePrompt(message, promptLocation, color) {
+    document.getElementById(promptLocation).innerHTML = message;
+    document.getElementById(promptLocation).style.color = color;
+}
+
+// function courseValidation() {
+//     console.log('course error');
+//     var course = $("#course").val();
+//
+//     if(course.length == 0 ){
+//         coursePrompt("course is required", "course-error", "red");
+//         event.preventDefault()
+//         return false;
+//     }
+//     if(!course.match(/^[a-zA-Z ]{2,30}$/)) {
+//         coursePrompt("Please enter a valid course", "course-error", "red");
+//         event.preventDefault()
+//         return false
+//     }
+//     coursePrompt("Course is valid", "course-error", "green");
+//     return true;
+// }
+
+function coursePrompt(errorMessage, messageLocation, color) {
+    document.getElementById(messageLocation).innerHTML = errorMessage;
+    document.getElementById(messageLocation).style.color = color;
+}
+
+// function gradeValidation() {
+//     var grade = $("#studentGrade").val();
+//     if (grade.length == 0) {
+//         gradePrompt("Grade is required", "grade-error", "red")
+//         event.preventDefault()
+//     }
+//     if(!grade.match(/^100$|^\d{0,2}(\.\d{1,2})? *%?$/)) {
+//         gradePrompt("Please enter a valid grade", "grade-error", "red");
+//         event.preventDefault()
+//         return false
+//     }
+//     gradePrompt("Grade is valid", "grade-error", "green");
+//     return true;
+// }
+
+function gradePrompt(errorMessage, messageLocation, color) {
+    document.getElementById(messageLocation).innerHTML = errorMessage;
+    document.getElementById(messageLocation).style.color = color;
+}
 function getData() {
     var ajaxOptions = {
         // url: 'http://s-apis.learningfuze.com/sgt/get',
         url: "http://localhost:8888/student_grade_table/server/getstudents.php",
         method: 'post',
         dataType: 'json',
-        data: {
-            api_key: 'AQ076PX9UZ'
-        }
+        // data: {
+        //     api_key: 'AQ076PX9UZ'
+        // }
     };
     $.ajax(ajaxOptions).then(function (response) {
         console.log('response:',response);
@@ -118,7 +226,6 @@ function handleCancelClick(){
  * @calls clearAddStudentFormInputs, updateStudentList
  */
 function addStudent(){
-    debugger;
     console.log('hey');
     var obj =  {
         name:$('#studentName').val(),
@@ -356,50 +463,52 @@ function deleteStudentFromDatabse() {
 
 
 
-function validateForm() {
-    const tests = [
-        {
-
-            element: "input[name=studentName]",
-            pattern: /^[a-zA-Z0-9 ]{4,}$/,
-            message: 'subject can only be letters or spaces, and must be 4+ characters'
-
-        },
-        {
-
-            element: "input[name=course]",
-            pattern: /^[a-zA-Z0-9 ]{4,}$/,
-            message: 'subject can only be letters or spaces, and must be 4+ characters'
-
-        },
-        {
-
-            element: "input[name=studentGrade]",
-            pattern: /^([1-9]?\d|100)$/,
-            message: 'subject can only be letters or spaces, and must be 4+ characters'
-
-        }
-
-
-    ]
-    if( tests.length === tests.filter( validateInputAndDisplayError).length){
-        console.log("it worked!");
-        addStudent();
-    }
-}
-
-function validateInputAndDisplayError( incomingTests ){
-    console.log("testing 69");
-    const element = incomingTests.element, pattern = incomingTests.pattern, errorMessage = incomingTests.message;
-    const value = $( element ).val();
-    const result = pattern.test( value );
-    if( !result ){
-        $( element ).next().text( errorMessage );
-    } else {
-        $( element ).next().text('');
-    }
-    return result;
-}
+// function validateForm() {
+//    debugger;
+//    console.log('validation');
+//     const tests = [
+//         {
+//
+//             name: $('#studentName').val(),
+//             pattern: /^[a-zA-Z0-9 ]{4,}$/,
+//             message: 'subject can only be letters or spaces, and must be 4+ characters'
+//
+//         },
+//         {
+//
+//             course: $('#course').val(),
+//             pattern: /^[a-zA-Z0-9 ]{4,}$/,
+//             message: 'subject can only be letters or spaces, and must be 4+ characters'
+//
+//         },
+//         {
+//
+//             grade: $('#studentGrade').val(),
+//             pattern: /^([1-9]?\d|100)$/,
+//             message: 'subject can only be letters or spaces, and must be 4+ characters'
+//
+//         }
+//
+//
+//     ];
+//     if( tests.length === tests.filter( validateInputAndDisplayError).length){
+//         console.log("it worked!");
+//         // addStudent();
+//     }
+// }
+//
+// function validateInputAndDisplayError( incomingTests ){
+//     console.log("testing 69");
+//     const element = incomingTests.element, pattern = incomingTests.pattern, errorMessage = incomingTests.message;
+//     const value = $( element ).val();
+//     const result = pattern.test( value );
+//     if( !result ){
+//         $( element ).next().text( errorMessage );
+//     } else {
+//         $( element ).next().text('');
+//     }
+//     return result;
+// }
 
 
 

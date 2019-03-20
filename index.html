@@ -21,13 +21,13 @@
               <small class="col-xs-9">Grade Average : <span class="avgGrade"></span></small>
              </h3>
     </div>
-    <form name="myForm"  class=" student-add-form col-xs-12 col-lg-3 pull-right">
+    <form name="myForm" onsubmit= "validation()" class=" student-add-form col-xs-12 col-lg-3 pull-right">
         <h4>Add Student</h4>
         <div class="form-group input-group col-xs-12 col-lg-12">
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-user"></span>
             </span>
-            <input  type="text" class="form-control form-rounded" name="studentName" id="studentName" placeholder="Student Name">
+            <input  type="text" class="form-control form-rounded"  name="studentName" id="studentName" placeholder="Student Name">
         </div>
         <div>
             <span id="name-error"></span>
@@ -36,44 +36,43 @@
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-list-alt"></span>
             </span>
-            <input type="text" class="form-control form-rounded" name="course" id="course"
-                   placeholder="Student Course">
+            <input type="text" class="form-control form-rounded"  name="course" id="course" placeholder="Student Course">
         </div>
         <div>
-            <span id="course-error" class="col-xs-12 col-lg-12"></span>
+            <span id="course-error"></span>
         </div>
         <div class="form-group input-group col-xs-12 col-lg-12">
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-education"></span>
             </span>
-            <input type="number"  min="0" max="100" required class="form-control form-rounded" name="studentGrade" id="studentGrade"
+            <input type="number"  min="0" max="100" required class="form-control form-rounded"  name="studentGrade" id="studentGrade"
                    placeholder="Student Grade">
         </div>
         <div>
-            <span id="demo" class="col-xs-12 col-lg-12"></span>
+            <span id="grade-error"></span>
         </div>
 
-        <button type="button" onclick="validateForm()" class=" col-lg-4 btn btn-success">Add</button>
+        <button type="submit"  onsubmit="validation()" class=" col-lg-4 btn btn-success">Add</button>
         <button type="button" class=" col-lg-4 btn btn-default">Cancel</button>
         <button type="button" class=" col-lg-4 btn btn-primary">Get Data</button>
     </form>
      <div>
         <div id="modal"  class=" editModal">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                     <div class="modal-content">
-                         <div class="modal-header">
-                             <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                 <span aria-hidden="true">&times;</span>
-                             </button>
-                         </div>
-                         <div class="modal-body">
-                             <div class="form-group input-group col-xs-12 col-lg-12">
-                                  <span class="input-group-addon">
-                                   <span class="glyphicon glyphicon-user"></span>
-                                   </span>
-                                 <input  type="text" class="form-control form-rounded" name="editStudentName" id="editStudentName" placeholder="Student Name">
-                             </div>
+          <div class="modal-dialog modal-dialog-centered" role="document">
+             <div class="modal-content">
+               <div class="modal-header">
+                 <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+                 </button>
+                </div>
+             <div class="modal-body">
+                 <div class="form-group input-group col-xs-12 col-lg-12">
+                      <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-user"></span>
+                      </span>
+                     <input  type="text" class="form-control form-rounded" name="editStudentName" id="editStudentName" placeholder="Student Name">
+                 </div>
                              <div class=" form-group input-group col-xs-12 col-lg-12">
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-list-alt"></span>
@@ -96,7 +95,7 @@
                              <button type="button" class="btn btn-secondary" onclick="$('#modal').hide()" data-dismiss="modal">Close</button>
                              <button type="button" class=" saveEdit btn btn-primary">Save changes</button>
                          </div>
-                     </div>
+             </div>
          </div>
 
      </div>

@@ -43,3 +43,9 @@ td, th {
 .background{
     background-image: url("https://campus.asu.edu/sites/default/files/styles/asu_spotlight_image/public/general/campus-downtown_0.jpg?itok=Q74uMy2b");
 }
+.has-success{
+    border-color: green;
+}
+.has-error{
+    border-color: red;
+}

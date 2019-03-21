@@ -41,5 +41,46 @@ td, th {
 
 }
 .background{
-    background-image: url("https://campus.asu.edu/sites/default/files/styles/asu_spotlight_image/public/general/campus-downtown_0.jpg?itok=Q74uMy2b");
+    background-color: black;
+    /*background-image: url("https://collegeconsensus.azureedge.net/wp-content/uploads/2016/12/ASU_Campus-1024x535.jpg")*/
+}
+.has-success{
+    border-color: green;
+}
+.has-error{
+    border-color: red;
+}
+.image {
+    height: 76px
+}
+.asu-logo{
+    height: 304px;
+    position: fixed;
+    right: 95px;
+    top: 381px;
+}
+#studentContent {
+    overflow-y: scroll;
+    overflow-x: scroll;
+}
+.title{
+    color: gold;
+}
+.gradeTitle{
+    color: gold;
+}
+.avgGrade{
+    color: gold;
+}
+.name {
+    color: gold;
+}
+.grade {
+    color: gold;
+}
+.course {
+    color: gold;
+}
+.operations {
+    color: gold;
 }

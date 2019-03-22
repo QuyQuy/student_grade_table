@@ -13,89 +13,87 @@
          <div class="col-xs-12 col-lg-12">
              <div class=" page-header media-heading col-xs-12 col-lg-12">
         <!-- only show this element when the isnt on mobile -->
-             <h1 class=" title hidden-xs col-lg-12">Student Grade Table
-                <small class=" gradeTitle col-lg-offset-6 pull-right ">Grade Average : <span class="avgGrade"></span></small>
+             <h1 class=" title hidden-xs col-md-12 col-lg-12">Student Grade Table
+                <small class=" gradeTitle    hidden-xs col-md-offset-5 col-lg-offset-8 pull-right ">Grade Average : <span class="avgGrade"></span></small>
              </h1>
         <!-- only show this element when the user gets to a mobile version -->
-             <h3 class="hidden-md hidden-lg hidden-xl">Student Grade Table
-              <small class="col-xs-9">Grade Average : <span class="avgGrade"></span></small>
+             <h3 class=" title hidden-md hidden-lg hidden-sm  hidden-xl">Student Grade Table
+              <small class="  gradeTitle col-xs-offset-3 pull-right  hidden-md hidden-lg hidden-xl">Grade Average : <span class="avgGrade"></span></small>
              </h3>
     </div>
-    <form name="myForm" onsubmit= " return validation()" class=" student-add-form col-xs-12 col-lg-3 pull-right">
-        <h4>Add Student</h4>
-        <div class="form-group input-group col-xs-12 col-lg-12">
-            <span class="input-group-addon">
-                <span class="glyphicon glyphicon-user"></span>
-            </span>
-            <input  type="text" class="form-control form-rounded" onkeyup="nameValidation()" name="studentName" id="studentName" placeholder="Student Name">
-        </div>
-        <div>
-            <span id="name-error"></span>
+    <form name="myForm" class=" student-add-form col-xs-12 col-sm-5 col-md-3 pull-left col-lg-3 pull-right">
+        <h4 class=" addStudentTitle">Add Student</h4>
+        <div class="form-group input-group col-xs-12 col-md-12 col-lg-12">
+            <div>
+                 <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-user"></span>
+                  </span>
+            </div>
+            <input  type="text" class="form-control form-rounded"  name="studentName" id="studentName" placeholder="Student Name">
+            <div class="error"></div>
         </div>
         <div class=" form-group input-group col-xs-12 col-lg-12">
-            <span class="input-group-addon">
-                <span class="glyphicon glyphicon-list-alt"></span>
-            </span>
-            <input type="text" class="form-control form-rounded" onkeyup="courseValidation()"  name="course" id="course" placeholder="Student Course">
-        </div>
-        <div>
-            <span id="course-error"></span>
+            <div>
+                <span class="input-group-addon">
+                   <span class="glyphicon glyphicon-list-alt"></span>
+                </span>
+            </div>
+            <input type="text" class="form-control form-rounded"  name="course" id="course" placeholder="Student Course">
+            <div class="error"></div>
         </div>
         <div class="form-group input-group col-xs-12 col-lg-12">
-            <span class="input-group-addon">
-                <span class="glyphicon glyphicon-education"></span>
-            </span>
-            <input type="number"  min="0" max="100" required class="form-control form-rounded" onkeyup="gradeValidation()" name="studentGrade" id="studentGrade"
-                   placeholder="Student Grade">
+            <div>
+                <span class="input-group-addon">
+                   <span class="glyphicon glyphicon-education"></span>
+                </span>
+            </div>
+            <input type="number"  min="0" max="100" required class="form-control form-rounded" name="studentGrade" id="studentGrade" placeholder="Student Grade">
+            <div class="error"></div>
         </div>
-        <div>
-            <span id="grade-error"></span>
-        </div>
-
-        <button type="submit" class=" col-lg-4  btn btn-success">Add</button>
-        <button type="button" class=" col-lg-4 btn btn-default">Cancel</button>
-        <button type="button" class=" col-lg-4   btn btn-primary">Get Data</button>
+        <button type="button" id="addButton" class=" col-lg-4 col-md-3 col-sm-4 col-xs-3  btn btn-success">Add</button>
+        <button type="button" class=" col-lg-4 col-md-4 col-sm-4 col-xs-3 btn btn-default">Cancel</button>
+        <button type="button" class=" col-lg-4 col-md-4 col-sm-4 col-xs-  btn btn-primary">Get Data</button>
     </form>
 
      <div>
-        <div id="modal"  class=" editModal">
+        <div id="modal"  class=" editModal col-xs-12">
           <div class="modal-dialog modal-dialog-centered" role="document">
              <div class="modal-content">
    <div class="modal-header">
-         <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-         <span aria-hidden="true">&times;</span>
-         </button>
+         <h5 class="modal-title col-xs-12" id="exampleModalLongTitle"> Edit Student</h5>
+         <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+         <!--<span aria-hidden="true">&times;</span>-->
+         <!--</button>-->
     </div>
      <div class="modal-body">
      <div class="form-group input-group col-xs-12 col-lg-12">
-          <span class="input-group-addon">
-          <span class="glyphicon glyphicon-user"></span>
-      </span>
-     <input  type="text" class="form-control form-rounded" name="editStudentName" id="editStudentName" onkeyup="editNameValidation()" placeholder="Student Name">
-     </div>
          <div>
-             <span id="editName-error"></span>
+             <span class="input-group-addon">
+               <span class="glyphicon glyphicon-user"></span>
+            </span>
          </div>
+     <input  type="text" class="form-control form-rounded" name="editStudentName" id="editStudentName"  placeholder="Student Name">
+         <div class="error"></div>
+     </div>
      <div class=" form-group input-group col-xs-12 col-lg-12">
-           <span class="input-group-addon">
-            <span class="glyphicon glyphicon-list-alt"></span>
-            </span>
-             <input type="text" class="form-control form-rounded" name="editCourse" onkeyup="editCourseValidation()" id="editCourse" placeholder="Student Course">
-     </div>
          <div>
-             <span id="editCourse-error"></span>
+             <span class="input-group-addon">
+                <span class="glyphicon glyphicon-list-alt"></span>
+             </span>
          </div>
-     <div class="form-group input-group col-xs-12 col-lg-12">
-            <span class="input-group-addon">
-            <span class="glyphicon glyphicon-education"></span>
-            </span>
-             <input type="number"  min="0" max="100" required class="form-control form-rounded" name="editStudentGrade" onkeyup="editGradeValidation()" id="editStudentGrade" placeholder="Student Grade">
+             <input type="text" class="form-control form-rounded" name="editCourse"  id="editCourse" placeholder="Student Course">
+         <div class="error"></div>
      </div>
-         <div>
-             <span id="editGrade-error"></span>
-         </div>
 
+     <div class="form-group input-group col-xs-12 col-lg-12">
+         <div>
+             <span class="input-group-addon">
+                <span class="glyphicon glyphicon-education"></span>
+             </span>
+         </div>
+             <input type="number"  min="0" max="100" required class="form-control form-rounded" name="editStudentGrade"  id="editStudentGrade" placeholder="Student Grade">
+         <div class="error"></div>
+     </div>
 
      <div class="modal-footer">
                  <button type="button" class="btn btn-secondary" onclick="$('#modal').hide()" data-dismiss="modal">Close</button>
@@ -105,7 +103,7 @@
              </div>
           </div>
     </div>
-    <div class=" page-header media-heading student-list-container col-xs-12 col-lg-9">
+    <div class=" page-header media-heading student-list-container col-xs-12 col-sm-12 col-md-9 col-lg-9">
         <table class="student-list col-lg-11">
             <thead>
             <tr>
@@ -123,6 +121,8 @@
              <img class="asu-logo" src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a1/Arizona_State_University_seal.svg/1200px-Arizona_State_University_seal.svg.png" alt=" ASU logo">
          </div>
    </div>
+ </div>
+</div>
   </body>
 </html>
 

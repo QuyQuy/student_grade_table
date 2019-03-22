@@ -61,6 +61,7 @@ var student_array = [];
 function initializeApp(){
     addClickHandlersToElements();
     getData();
+
     // inputValidation();
 }
 
@@ -144,125 +145,124 @@ function initializeApp(){
 //     return true;
 //
 // }
-function nameValidation() {
-    var name = $("#studentName").val();
-    if(name.length == 0) {
-        namePrompt("Name is required", "name-error", "red");
-        return false
-    }
-    if(!name.match(/^([A-Z][a-z]+)\s([A-Z][a-zA-Z-]+)$/)) {
-        event.preventDefault()
-        namePrompt("First and Last Name please", "name-error", "red");
-        return false
-    }
-    namePrompt("name is valid", "name-error", "green");
-    return true;
-
-
-}
-
-function namePrompt(message, promptLocation, color) {
-    document.getElementById(promptLocation).innerHTML = message;
-    document.getElementById(promptLocation).style.color = color;
-}
-
-function editNameValidation() {
-    var editName = $("#editStudentName").val();
-    if(editName.length == 0) {
-        editnamePrompt("Name is required", "editName-error", "red");
-        return false
-    }
-    if(!editName.match(/^([A-Z][a-z]+)\s([A-Z][a-zA-Z-]+)$/)) {
-        event.preventDefault()
-        editNamePrompt("First and Last Name please", "editName-error", "red");
-        return false
-    }
-    editNamePrompt("name is valid", "editName-error", "green");
-    return true;
-}
-function editNamePrompt(message, promptLocation, color) {
-    document.getElementById(promptLocation).innerHTML = message;
-    document.getElementById(promptLocation).style.color = color;
-}
-function courseValidation() {
-    console.log('course error');
-    var course = $("#course").val();
-
-    if(course.length == 0 ){
-        coursePrompt("course is required", "course-error", "red");
-        return false;
-    }
-    if(!course.match(/^[a-zA-Z ]{2,30}$/)) {
-        coursePrompt("Please enter a valid course", "course-error", "red");
-        return false
-    }
-    coursePrompt("Course is valid", "course-error", "green");
-    return true;
-}
-
-function coursePrompt(errorMessage, messageLocation, color) {
-    document.getElementById(messageLocation).innerHTML = errorMessage;
-    document.getElementById(messageLocation).style.color = color;
-}
-
-function editCourseValidation() {
-    var editCourse = $("#editCourse").val();
-
-    if(editCourse.length == 0 ){
-        editCoursePrompt("Valid course is required", "editCourse-error", "red");
-        return false;
-    }
-    if(!editCourse.match(/^[a-zA-Z ]{2,30}$/)) {
-        editCoursePrompt("Please enter a valid course", "editCourse-error", "red");
-        return false
-    }
-    editCoursePrompt("Course is valid", "editCourse-error", "green");
-    return true;
-}
-function editCoursePrompt(errorMessage, messageLocation, color) {
-    document.getElementById(messageLocation).innerHTML = errorMessage;
-    document.getElementById(messageLocation).style.color = color;
-}
-
-
-function gradeValidation() {
-    var grade = $("#studentGrade").val();
-    if (grade.length == 0) {
-        gradePrompt("Please enter a valid grade", "grade-error", "red")
-        return false
-    }
-    if(!grade.match(/^100$|^\d{0,2}(\.\d{1,2})? *%?$/)) {
-        gradePrompt("Please enter a valid grade", "grade-error", "red");
-        return false
-    }
-    gradePrompt("Grade is valid", "grade-error", "green");
-    return true;
-}
-
-function gradePrompt(gradeMessage, messageLocation, color) {
-    document.getElementById(messageLocation).innerHTML = gradeMessage;
-    document.getElementById(messageLocation).style.color = color;
-}
-
-
-function editGradeValidation() {
-    var editGrade = $("#editStudentGrade").val();
-    if (editGrade.length == 0) {
-        editGradePrompt("Please enter a valid grade", "editGrade-error", "red")
-        return false
-    }
-    if(!editGrade.match(/^100$|^\d{0,2}(\.\d{1,2})? *%?$/)) {
-        editGradePrompt("Please enter a valid grade", "editGrade-error", "red");
-        return false
-    }
-    editGradePrompt("Grade is valid", "editGrade-error", "green");
-    return true;
-}
-
-function editGradePrompt(gradeMessage, messageLocation, color) {
-    document.getElementById(messageLocation).innerHTML = gradeMessage;
-    document.getElementById(messageLocation).style.color = color;
-}
+// function nameValidation() {
+//     var name = $("#studentName").val();
+//     if(name.length == 0) {
+//         namePrompt("Name is required", "name-error", "red");
+//         return false
+//     }
+//     if(!name.match(/^([A-Z][a-z]+)\s([A-Z][a-zA-Z-]+)$/)) {
+//         namePrompt("First and Last Name please", "name-error", "red");
+//         return false
+//     }
+//     namePrompt("name is valid", "name-error", "green");
+//     return true;
+//
+//
+// }
+//
+// function namePrompt(message, promptLocation, color) {
+//     document.getElementById(promptLocation).innerHTML = message;
+//     document.getElementById(promptLocation).style.color = color;
+// }
+//
+// function editNameValidation() {
+//     var editName = $("#editStudentName").val();
+//     if(editName.length == 0) {
+//         editnamePrompt("Name is required", "editName-error", "red");
+//         return false
+//     }
+//     if(!editName.match(/^([A-Z][a-z]+)\s([A-Z][a-zA-Z-]+)$/)) {
+//         event.preventDefault()
+//         editNamePrompt("First and Last Name please", "editName-error", "red");
+//         return false
+//     }
+//     editNamePrompt("name is valid", "editName-error", "green");
+//     return true;
+// }
+// function editNamePrompt(message, promptLocation, color) {
+//     document.getElementById(promptLocation).innerHTML = message;
+//     document.getElementById(promptLocation).style.color = color;
+// }
+// function courseValidation() {
+//     console.log('course error');
+//     var course = $("#course").val();
+//
+//     if(course.length == 0 ){
+//         coursePrompt("course is required", "course-error", "red");
+//         return false;
+//     }
+//     if(!course.match(/^[a-zA-Z ]{2,30}$/)) {
+//         coursePrompt("Please enter a valid course", "course-error", "red");
+//         return false
+//     }
+//     coursePrompt("Course is valid", "course-error", "green");
+//     return true;
+// }
+//
+// function coursePrompt(errorMessage, messageLocation, color) {
+//     document.getElementById(messageLocation).innerHTML = errorMessage;
+//     document.getElementById(messageLocation).style.color = color;
+// }
+//
+// function editCourseValidation() {
+//     var editCourse = $("#editCourse").val();
+//
+//     if(editCourse.length == 0 ){
+//         editCoursePrompt("Valid course is required", "editCourse-error", "red");
+//         return false;
+//     }
+//     if(!editCourse.match(/^[a-zA-Z ]{2,30}$/)) {
+//         editCoursePrompt("Please enter a valid course", "editCourse-error", "red");
+//         return false
+//     }
+//     editCoursePrompt("Course is valid", "editCourse-error", "green");
+//     return true;
+// }
+// function editCoursePrompt(errorMessage, messageLocation, color) {
+//     document.getElementById(messageLocation).innerHTML = errorMessage;
+//     document.getElementById(messageLocation).style.color = color;
+// }
+//
+//
+// function gradeValidation() {
+//     var grade = $("#studentGrade").val();
+//     if (grade.length == 0) {
+//         gradePrompt("Please enter a valid grade", "grade-error", "red")
+//         return false
+//     }
+//     if(!grade.match(/^100$|^\d{0,2}(\.\d{1,2})? *%?$/)) {
+//         gradePrompt("Please enter a valid grade", "grade-error", "red");
+//         return false
+//     }
+//     gradePrompt("Grade is valid", "grade-error", "green");
+//     return true;
+// }
+//
+// function gradePrompt(gradeMessage, messageLocation, color) {
+//     document.getElementById(messageLocation).innerHTML = gradeMessage;
+//     document.getElementById(messageLocation).style.color = color;
+// }
+//
+//
+// function editGradeValidation() {
+//     var editGrade = $("#editStudentGrade").val();
+//     if (editGrade.length == 0) {
+//         editGradePrompt("Please enter a valid grade", "editGrade-error", "red")
+//         return false
+//     }
+//     if(!editGrade.match(/^100$|^\d{0,2}(\.\d{1,2})? *%?$/)) {
+//         editGradePrompt("Please enter a valid grade", "editGrade-error", "red");
+//         return false
+//     }
+//     editGradePrompt("Grade is valid", "editGrade-error", "green");
+//     return true;
+// }
+//
+// function editGradePrompt(gradeMessage, messageLocation, color) {
+//     document.getElementById(messageLocation).innerHTML = gradeMessage;
+//     document.getElementById(messageLocation).style.color = color;
+// }
 
 
 function getData() {
@@ -289,9 +289,11 @@ function getData() {
  *
  */
 function addClickHandlersToElements(){
-    $('.btn.btn-success').click(handleAddClicked);
+    // $('.btn.btn-success').click(handleAddClicked);
     $('.btn.btn-default').click(handleCancelClick);
     $('.btn btn-primary').click(handleGetData);
+    $('#addButton').click(validateForm);
+    $('.saveEdit').click(editValidateForm);
     // $('.saveEdit').click(editStudent)
 }
 
@@ -301,10 +303,10 @@ function addClickHandlersToElements(){
  * @return:
  none
  */
-function handleAddClicked(){
-    console.log('hi');
-    addStudent();
-}
+// function handleAddClicked(){
+//     console.log('hi');
+//     addStudent();
+// }
 /***************************************************************************************************
  * handleCancelClicked - Event Handler when user clicks the cancel button, should clear out student form
  * @param: {undefined} none
@@ -556,55 +558,97 @@ function deleteStudentFromDatabse() {
 //
 // }
 
+function editValidateForm() {
+    const tests = [
+        {
+
+            element: $('#editStudentName'),
+            pattern: /^([A-Z][a-z]+)\s([A-Z][a-zA-Z-]+)$/,
+            message:  "please enter your first and last name"
+
+        },
+        {
+
+            element: $('#editCourse'),
+            pattern: /^[a-zA-Z ]{2,30}$/,
+            message: "Please enter a valid course"
+
+        },
+        {
+
+            element: $('#editStudentGrade'),
+            pattern: /^100(\.[0]{1,2})?|([0-9]|[1-9][0-9])(\.[0-9]{1,2})?$/,
+            message: "Please enter a valid grade"
+
+        }
 
 
+    ];
+    if( tests.length === tests.filter( editValidateInputAndDisplayError).length){
+        console.log("it worked!");
+        addStudent();
+    }
+}
+function editValidateInputAndDisplayError( incomingTests ){
+    console.log("testing 69");
+    const element = incomingTests.element, pattern = incomingTests.pattern, errorMessage = incomingTests.message;
+    const value = $( element ).val();
+    const result = pattern.test( value );
+    if( !result ){
+        $( element ).next().text( errorMessage );
+    } else {
+        $( element ).next().text('');
+    }
+    return result;
+}
 
-// function validateForm() {
-//    debugger;
-//    console.log('validation');
-//     const tests = [
-//         {
-//
-//             name: $('#studentName').val(),
-//             pattern: /^[a-zA-Z0-9 ]{4,}$/,
-//             message: 'subject can only be letters or spaces, and must be 4+ characters'
-//
-//         },
-//         {
-//
-//             course: $('#course').val(),
-//             pattern: /^[a-zA-Z0-9 ]{4,}$/,
-//             message: 'subject can only be letters or spaces, and must be 4+ characters'
-//
-//         },
-//         {
-//
-//             grade: $('#studentGrade').val(),
-//             pattern: /^([1-9]?\d|100)$/,
-//             message: 'subject can only be letters or spaces, and must be 4+ characters'
-//
-//         }
-//
-//
-//     ];
-//     if( tests.length === tests.filter( validateInputAndDisplayError).length){
-//         console.log("it worked!");
-//         // addStudent();
-//     }
-// }
-//
-// function validateInputAndDisplayError( incomingTests ){
-//     console.log("testing 69");
-//     const element = incomingTests.element, pattern = incomingTests.pattern, errorMessage = incomingTests.message;
-//     const value = $( element ).val();
-//     const result = pattern.test( value );
-//     if( !result ){
-//         $( element ).next().text( errorMessage );
-//     } else {
-//         $( element ).next().text('');
-//     }
-//     return result;
-// }
+
+function validateForm() {
+   debugger;
+   console.log('validation');
+    const tests = [
+        {
+
+            element: $('#studentName'),
+            pattern: /^([A-Z][a-z]+)\s([A-Z][a-zA-Z-]+)$/,
+            message:  "please enter your first and last name"
+
+        },
+        {
+
+            element: $('#course'),
+            pattern: /^[a-zA-Z ]{2,30}$/,
+            message: "Please enter a valid course"
+
+        },
+        {
+
+            element: $('#studentGrade'),
+            pattern: /^100(\.[0]{1,2})?|([0-9]|[1-9][0-9])(\.[0-9]{1,2})?$/,
+            message: "Please enter a valid grade"
+
+        }
+
+
+    ];
+    if( tests.length === tests.filter( validateInputAndDisplayError).length){
+        console.log("it worked!");
+        addStudent();
+    }
+}
+
+function validateInputAndDisplayError( incomingTests ){
+    console.log("testing 69");
+    const element = incomingTests.element, pattern = incomingTests.pattern, errorMessage = incomingTests.message;
+    const value = $( element ).val();
+    const result = pattern.test( value );
+    if( !result ){
+        $( element ).next().text( errorMessage );
+    } else {
+        $( element ).next().text('');
+    }
+    return result;
+}
 
 
 

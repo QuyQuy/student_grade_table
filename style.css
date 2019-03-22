@@ -17,10 +17,13 @@
 #modal {
     display: none;
 }
+
 .edit {
-    width: 65px;
-    position: fixed;
-    left: 703px;
+    position: absolute;
+    margin-top: 10px;
+    margin-left: -142px;
+    width: 66px;
+
 }
 #studentContent {
     background-color: white;
@@ -32,11 +35,18 @@ td, th {
     margin-top: 10px;
     margin-left: 54px;
 }
-.edit {
-    position: absolute;
-    margin-top: 10px;
-    margin-left: -142px;
-}
+.
+/*.edit {*/
+    /*position: absolute;*/
+    /*margin-top: 10px;*/
+    /*margin-left: -142px;*/
+/*}*/
+
+/*.edit {*/
+    /*position: absolute;*/
+    /*margin-top: 10px;*/
+    /*margin-left: -142px;*/
+/*}*/
 .operations {
 
 }
@@ -59,9 +69,12 @@ td, th {
     right: 95px;
     top: 381px;
 }
-#studentContent {
-    overflow-y: scroll;
-    overflow-x: scroll;
+/*#studentContent {*/
+    /*overflow-y: scroll;*/
+    /*overflow-x: scroll;*/
+/*}*/
+.modal-content {
+    background-color: darkgrey;
 }
 .title{
     color: gold;
@@ -83,4 +96,45 @@ td, th {
 }
 .operations {
     color: gold;
+}
+
+.addStudentTitle {
+    color: gold;
+}
+#exampleModalLongTitle {
+    font-size: 26px;
+    position: relative;
+    margin-left: 184px;
+    color: gold;
+}
+
+/*@media screen and (orientation: portrait){*/
+    /*.gradeTitle{*/
+        /*color: gold;*/
+    /*}*/
+    /*!*.edit {*!*/
+        /*!*position: absolute;*!*/
+        /*!*margin-top: 10px;*!*/
+        /*!*margin-left: -142px;*!*/
+    /*!*}*!*/
+/*}*/
+@media only screen  and (min-width: 400px) {
+    .editModal {
+        position: absolute;
+        z-index: 2;
+        left: 28px;
+        top: 133px;
+        height: 220px;
+        width: 602px display: none;
+    }
+    #exampleModalLongTitle {
+        font-size: 26px;
+        position: relative;
+        margin-left: 51px;
+        color: gold;
+        bottom: 15px;
+    }
+}
+.error {
+    color: red;
 }

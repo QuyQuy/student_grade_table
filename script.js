@@ -8,7 +8,6 @@
 $(document).ready(initializeApp);
 
 // $(document).on('click', '.saveEdit', function(){
-//     debugger;
 //     console.log ("testing new Edit");
 //     var student_id = $(".saveEdit").attr("ID");
 //
@@ -26,9 +25,11 @@ $(document).ready(initializeApp);
 //             grade: gradeValue
 //         },
 //
-//     });
+//     })
+//     getData()
 //
 // });
+
 
 function editStudent() {
     var student_id = $(".saveEdit").attr("ID");
@@ -37,38 +38,77 @@ function editStudent() {
     const courseValue = $('#editCourse').val();
     const gradeValue = $('#editStudentGrade').val();
 
-    var editAjax = {
+    $.ajax({
         url: "http://localhost:8888/student_grade_table/server/updatestudent.php",
         method: "POST",
-        dataType: "json",
-        sucess:function(data){
+        data: {
             student_id:student_id,
-                name: nameValue,
-                course: courseValue,
-                grade: gradeValue
+            name: nameValue,
+            course: courseValue,
+            grade: gradeValue
         },
-    }
+
+    })
+    getData()
+}
+
+
+// function saveEditStudent() {
+//     var student_id = $(".saveEdit").attr("ID");
+//
+//     var editName = $('#editStudentName').val();
+//     var  editCourse = $('#editCourse').val();
+//     var  editGrade = $('#editStudentGrade').val();
+//     editStudent(student_id,editName,editCourse,editGrade)
+// }
+//
+// function editStudent(student_id,editName,editCourse,editGrade) {
+//     debugger;
+//
+//     var editStudentObj = {
+//         url: "http://localhost:8888/student_grade_table/server/updatestudent.php",
+//         dataType:'json',
+//         method: "POST",
+//         data: {
+//             student_id,
+//             editName,
+//             editCourse,
+//             editGrade
+//         }
+//     }
+//     $.ajax(editStudentObj).then(function(data) {
+//         console.log("edit response", data);
+//         if(data.success) {
+//             $("#modal").modal('hide');
+//             getData()
+//         }
+//     })
+//
+// }
 
     // $.ajax({
     //     url: "http://localhost:8888/student_grade_table/server/updatestudent.php",
     //     method: "POST",
-    //     dataType: "json",
-    //     sucess:function(data){
+    //     data: {
+    //         student_id:student_id,
+    //         name: nameValue,
+    //         course: courseValue,
+    //         grade: gradeValue
+    //         },
+    //
+    // });
+    // $.ajax({
+    //     url: "http://localhost:8888/student_grade_table/server/updatestudent.php",
+    //     method: "POST",
+    //     data: {
     //         student_id:student_id,
     //         name: nameValue,
     //         course: courseValue,
     //         grade: gradeValue
     //     },
-
-
-    });
-    $.ajax(editAjax).then(function (response) {
-        console.log('response:',response);
-        student_array = response.data;
-        updateStudentList()
-    });
-    updateStudentList();
-}
+    //
+    // });
+    // updateStudentList()
 
 
 
@@ -107,6 +147,7 @@ function initializeApp(){
 
 
 function getData() {
+    console.log("here is my get data")
     var ajaxOptions = {
         // url: 'http://s-apis.learningfuze.com/sgt/get',
         url: "http://localhost:8888/student_grade_table/server/getstudents.php",
@@ -291,7 +332,7 @@ function updateStudentList(){
  * @returns {number}
  */
 function calculateGradeAverage(){
-    var totalGrade = null;
+    var totalGrade =  0;
     console.log(totalGrade);
     for (var i = 0; i < student_array.length; i++ ) {
         var integer = parseInt(student_array[i].grade);
@@ -302,7 +343,7 @@ function calculateGradeAverage(){
     // $('.avgGrade').append(totalGrade);
 
 
-    renderGradeAverage(roundedAverage);
+     return renderGradeAverage(roundedAverage);
 }
 /***************************************************************************************************
  * renderGradeAverage - updates the on-page grade average
@@ -310,8 +351,8 @@ function calculateGradeAverage(){
  * @returns {undefined} none
  */
 function renderGradeAverage(number) {
-    debugger;
     var grade = number;
+
 
     // console.log(number);
     $('.avgGrade').append(grade);
@@ -329,7 +370,6 @@ function handleGetData() {
 
 
 function removeStudent(studentId) {
-
 
 
     var deleteData = {
@@ -401,6 +441,7 @@ function deleteStudentFromDatabse() {
 // }
 
 function editValidateForm() {
+    debugger;
     const tests = [
         {
 

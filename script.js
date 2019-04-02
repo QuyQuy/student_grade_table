@@ -7,49 +7,86 @@
  */
 $(document).ready(initializeApp);
 
-// $(document).on('click', '.saveEdit', function(){
-//     console.log ("testing new Edit");
-//     var student_id = $(".saveEdit").attr("ID");
+// $(document).ready(function(){
 //
+//     $(document).on('click', '.saveEdit', function(){
+//         console.log ("testing new Edit");
+//         var student_id = $(this).attr("ID");
+//
+//         // const nameValue = $('#editStudentName').val();
+//         // const courseValue = $('#editCourse').val();
+//         // const gradeValue = $('#editStudentGrade').val();
+//
+//         $.ajax({
+//             url: "http://localhost:8888/student_grade_table/server/updatestudent.php",
+//             method: "POST",
+//             data: {
+//                 student_id:student_id,
+//
+//             },
+//             dataType:"json",
+//             success:function(data){
+//
+//             }
+//
+//         })
+//         getData()
+//
+//     });
+//
+// })
+
+// function saveEditStudent(studentObj){
+//     debugger;
+//     var student_id = $(".saveEdit").attr("ID");
+//     // var student_id = $(this).attr("idNumber");
 //     const nameValue = $('#editStudentName').val();
 //     const courseValue = $('#editCourse').val();
 //     const gradeValue = $('#editStudentGrade').val();
-//
-//     $.ajax({
-//         url: "http://localhost:8888/student_grade_table/server/updatestudent.php",
-//         method: "POST",
-//         data: {
-//             student_id:student_id,
-//             name: nameValue,
-//             course: courseValue,
-//             grade: gradeValue
-//         },
-//
-//     })
-//     getData()
-//
-// });
+//     editStudent(student_id,nameValue,courseValue,gradeValue)
+// }
 
-
+// backup
+//
 function editStudent() {
+    // 'idNumber'
     var student_id = $(".saveEdit").attr("ID");
+    // var student_id = $(this).attr("idNumber");
 
-    const nameValue = $('#editStudentName').val();
-    const courseValue = $('#editCourse').val();
-    const gradeValue = $('#editStudentGrade').val();
+    var nameValue = $('#editStudentName').val();
+    var courseValue = $('#editCourse').val();
+    var gradeValue = $('#editStudentGrade').val();
 
     $.ajax({
         url: "http://localhost:8888/student_grade_table/server/updatestudent.php",
         method: "POST",
         data: {
+            // student_id,
+            // nameValue,
+            // courseValue,
+            // gradeValue
+
             student_id:student_id,
             name: nameValue,
             course: courseValue,
             grade: gradeValue
         },
+        // success: function(data){
+        //     $('#editStudentName').val(data.name);
+        //     $('#editCourse').val(data.course);
+        //     $('#editStudentGrade').val(data.grade);
+        // }
 
     })
     getData()
+}
+function showEditModal(studentObj){
+    console.log("heypooooooooooo")
+    var id = $(this).attr('idNumber')
+    $('#editStudentName').val(studentObj.name);
+    $('#editCourse').val(studentObj.course);
+    $('#editStudentGrade').val(studentObj.grade);
+    $('#modal').modal();
 }
 
 
@@ -63,7 +100,7 @@ function editStudent() {
 // }
 //
 // function editStudent(student_id,editName,editCourse,editGrade) {
-//     debugger;
+//
 //
 //     var editStudentObj = {
 //         url: "http://localhost:8888/student_grade_table/server/updatestudent.php",
@@ -288,10 +325,15 @@ function renderStudentOnDom(studentObj) {
         text: 'Edit',
         idNumber: studentObj.id,
         class: 'edit btn btn-primary',
-        on: {
-            click: () => {
-                modal(studentObj.id);
-            }
+        // on: {
+        //     click: () => {
+        //         modal(studentObj.id);
+        //     }
+        //
+        // }
+        click: function(){
+            showEditModal(studentObj);
+            modal(studentObj.id);
         }
     });
 
@@ -323,6 +365,7 @@ function updateStudentList(){
     // }
 
     calculateGradeAverage();
+    renderGradeAverage()
 
 
 }
@@ -343,20 +386,19 @@ function calculateGradeAverage(){
     // $('.avgGrade').append(totalGrade);
 
 
-     return renderGradeAverage(roundedAverage);
+     return roundedAverage
 }
 /***************************************************************************************************
  * renderGradeAverage - updates the on-page grade average
  * @param: {number} average    the grade average
  * @returns {undefined} none
  */
-function renderGradeAverage(number) {
-    var grade = number;
+function renderGradeAverage() {
 
 
     // console.log(number);
-    $('.avgGrade').append(grade);
-    console.log(number)
+    // $('.avgGrade').append(grade);
+    $('.avgGrade').text(calculateGradeAverage);
     console.log('this is the grade', grade)
 }
 function handleGetData() {
@@ -441,7 +483,6 @@ function deleteStudentFromDatabse() {
 // }
 
 function editValidateForm() {
-    debugger;
     const tests = [
         {
 
@@ -470,6 +511,7 @@ function editValidateForm() {
     if( tests.length === tests.filter( editValidateInputAndDisplayError).length){
         console.log("it worked!");
         editStudent();
+        // saveEditStudent()
     }
 }
 function editValidateInputAndDisplayError( incomingTests ){

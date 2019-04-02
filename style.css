@@ -35,8 +35,9 @@ td, th {
     margin-top: 10px;
     margin-left: 54px;
 }
-.
-/*.edit {*/
+.modal-backdrop{
+    display:none;
+}
     /*position: absolute;*/
     /*margin-top: 10px;*/
     /*margin-left: -142px;*/

@@ -38,21 +38,13 @@ td, th {
 .modal-backdrop{
     display:none;
 }
-    /*position: absolute;*/
-    /*margin-top: 10px;*/
-    /*margin-left: -142px;*/
-/*}*/
 
-/*.edit {*/
-    /*position: absolute;*/
-    /*margin-top: 10px;*/
-    /*margin-left: -142px;*/
-/*}*/
 .operations {
 
 }
 .background{
     background-color: black;
+    overflow-x: hidden;
     /*background-image: url("https://collegeconsensus.azureedge.net/wp-content/uploads/2016/12/ASU_Campus-1024x535.jpg")*/
 }
 .has-success{
@@ -107,6 +99,9 @@ td, th {
     position: relative;
     margin-left: 184px;
     color: gold;
+}
+.media-heading{
+    overflow-x: scroll;
 }
 
 /*@media screen and (orientation: portrait){*/

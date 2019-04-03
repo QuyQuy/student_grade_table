@@ -7,47 +7,7 @@
  */
 $(document).ready(initializeApp);
 
-// $(document).ready(function(){
-//
-//     $(document).on('click', '.saveEdit', function(){
-//         console.log ("testing new Edit");
-//         var student_id = $(this).attr("ID");
-//
-//         // const nameValue = $('#editStudentName').val();
-//         // const courseValue = $('#editCourse').val();
-//         // const gradeValue = $('#editStudentGrade').val();
-//
-//         $.ajax({
-//             url: "http://localhost:8888/student_grade_table/server/updatestudent.php",
-//             method: "POST",
-//             data: {
-//                 student_id:student_id,
-//
-//             },
-//             dataType:"json",
-//             success:function(data){
-//
-//             }
-//
-//         })
-//         getData()
-//
-//     });
-//
-// })
 
-// function saveEditStudent(studentObj){
-//     debugger;
-//     var student_id = $(".saveEdit").attr("ID");
-//     // var student_id = $(this).attr("idNumber");
-//     const nameValue = $('#editStudentName').val();
-//     const courseValue = $('#editCourse').val();
-//     const gradeValue = $('#editStudentGrade').val();
-//     editStudent(student_id,nameValue,courseValue,gradeValue)
-// }
-
-// backup
-//
 function editStudent() {
     // 'idNumber'
     var student_id = $(".saveEdit").attr("ID");
@@ -57,28 +17,32 @@ function editStudent() {
     var courseValue = $('#editCourse').val();
     var gradeValue = $('#editStudentGrade').val();
 
-    $.ajax({
+    var editAjax = {
         url: "http://localhost:8888/student_grade_table/server/updatestudent.php",
         method: "POST",
         data: {
-            // student_id,
-            // nameValue,
-            // courseValue,
-            // gradeValue
 
-            student_id:student_id,
+            student_id: student_id,
             name: nameValue,
             course: courseValue,
             grade: gradeValue
         },
-        // success: function(data){
-        //     $('#editStudentName').val(data.name);
-        //     $('#editCourse').val(data.course);
-        //     $('#editStudentGrade').val(data.grade);
-        // }
+        success: function (response) {
+            console.log("PLeaaaaaaase", response);
+            getData();
+            closeModal();
+        },
+        error: function (error) {
+            console.log('error', error)
+        }
+    }
+    $.ajax(editAjax)
+}
 
-    })
-    getData()
+
+
+function closeModal(){
+    $('#modal').css("display","none");
 }
 function showEditModal(studentObj){
     console.log("heypooooooooooo")
@@ -90,62 +54,6 @@ function showEditModal(studentObj){
 }
 
 
-// function saveEditStudent() {
-//     var student_id = $(".saveEdit").attr("ID");
-//
-//     var editName = $('#editStudentName').val();
-//     var  editCourse = $('#editCourse').val();
-//     var  editGrade = $('#editStudentGrade').val();
-//     editStudent(student_id,editName,editCourse,editGrade)
-// }
-//
-// function editStudent(student_id,editName,editCourse,editGrade) {
-//
-//
-//     var editStudentObj = {
-//         url: "http://localhost:8888/student_grade_table/server/updatestudent.php",
-//         dataType:'json',
-//         method: "POST",
-//         data: {
-//             student_id,
-//             editName,
-//             editCourse,
-//             editGrade
-//         }
-//     }
-//     $.ajax(editStudentObj).then(function(data) {
-//         console.log("edit response", data);
-//         if(data.success) {
-//             $("#modal").modal('hide');
-//             getData()
-//         }
-//     })
-//
-// }
-
-    // $.ajax({
-    //     url: "http://localhost:8888/student_grade_table/server/updatestudent.php",
-    //     method: "POST",
-    //     data: {
-    //         student_id:student_id,
-    //         name: nameValue,
-    //         course: courseValue,
-    //         grade: gradeValue
-    //         },
-    //
-    // });
-    // $.ajax({
-    //     url: "http://localhost:8888/student_grade_table/server/updatestudent.php",
-    //     method: "POST",
-    //     data: {
-    //         student_id:student_id,
-    //         name: nameValue,
-    //         course: courseValue,
-    //         grade: gradeValue
-    //     },
-    //
-    // });
-    // updateStudentList()
 
 
 
@@ -360,9 +268,7 @@ function updateStudentList(){
 
 
     }
-    // for ( var apiData = 0; apiData < studentObj.data.length; apiData++) {
-    //     renderStudentOnDom(studentObj.data[apiData]);
-    // }
+
 
     calculateGradeAverage();
     renderGradeAverage()
@@ -399,7 +305,7 @@ function renderGradeAverage() {
     // console.log(number);
     // $('.avgGrade').append(grade);
     $('.avgGrade').text(calculateGradeAverage);
-    console.log('this is the grade', grade)
+
 }
 function handleGetData() {
     getData();
@@ -454,33 +360,7 @@ function deleteStudentFromDatabse() {
     })
 }
 
-// function validation () {
-//    console.log('testing');
-//    console.log("yo i like kate");
-//
-//
-//      var grade = document.getElementById("studentGrade").value;
-//      var name = document.getElementById("studentName").value;
-//      var course = document.getElementById("course").value;
-//
-//
-//
-//     if(isNaN(grade) || grade < 0 || grade > 100 || grade =="" ){
-//         document.getElementById("demo").innerHTML = "enter a valid grade ";
-//     }
-//
-//     if( name = "" || name.length < 2 ||  name.length > 100) {
-//         document.getElementById("name-error").innerHTML= 'error';
-//
-//     }
-//     if(course = "" || course.length < 2 || course.length > 10) {
-//         document.getElementById("course-error").innerHTML= 'error'
-//     }
-//     return true;
-//
-//
-//
-// }
+
 
 function editValidateForm() {
     const tests = [
@@ -488,7 +368,7 @@ function editValidateForm() {
 
             element: $('#editStudentName'),
             pattern: /^([A-Z][a-z]+)\s([A-Z][a-zA-Z-]+)$/,
-            message:  "please enter your first and last name"
+            message:  " Please capitalize your first and last name"
 
         },
         {
@@ -536,7 +416,7 @@ function validateForm() {
 
             element: $('#studentName'),
             pattern: /^([A-Z][a-z]+)\s([A-Z][a-zA-Z-]+)$/,
-            message:  "please enter your first and last name"
+            message:  " Please capitalize your first and last name"
 
         },
         {

@@ -18,6 +18,18 @@
     display: none;
 }
 
+#deleteModal {
+    position: absolute;
+    z-index: 1;
+    left: 368px;
+    top: 133px;
+    height: 220px;
+    width: 602px;
+}
+.deleteConfirmation{
+    display: none;
+}
+
 .edit {
     position: absolute;
     margin-top: 10px;
@@ -133,4 +145,19 @@ td, th {
 }
 .error {
     color: red;
+}
+
+@media only screen and (max-width: 500px) {
+    .delete {
+        margin-top: 55px;
+        margin-left: 4px;
+        margin-bottom: 23px
+    }
+    .edit {
+        position: absolute;
+        margin-top: 8px;
+        margin-left: -65px;
+        width: 66px;
+    }
+
 }

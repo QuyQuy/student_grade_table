@@ -83,26 +83,7 @@
              <input type="text" class="form-control form-rounded" name="editCourse"  id="editCourse" placeholder="Student Course">
          <div class="error"></div>
      </div>
-
-     <div class="form-group input-group col-xs-12 col-lg-12">
-         <div>
-             <span class="input-group-addon">
-                <span class="glyphicon glyphicon-education"></span>
-             </span>
-         </div>
-             <input type="number"  min="0" max="100" required class="form-control form-rounded" name="editStudentGrade"  id="editStudentGrade" placeholder="Student Grade">
-         <div class="error"></div>
-     </div>
-
-     <div class="modal-footer">
-                 <button type="button" class="btn btn-secondary" onclick="$('#modal').hide()" data-dismiss="modal">Close</button>
-                 <button type="button" onclick="" class=" saveEdit btn btn-primary">Save changes</button>
-    </div>
-                 </div>
-             </div>
-          </div>
-    </div>
-         <div id="deleteModal" class="deleteConfirmation" tabindex="-1" role="dialog">
+         <div class="errorModal" tabindex="-1" role="dialog">
              <div class="modal-dialog" role="document">
                  <div class="modal-content">
                      <div class="modal-header">
@@ -117,6 +98,45 @@
                      <div class="modal-footer">
                          <button type="button" class="btn btn-primary">Save changes</button>
                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                     </div>
+                 </div>
+             </div>
+         </div>
+
+
+     <div class="form-group input-group col-xs-12 col-lg-12">
+         <div>
+             <span class="input-group-addon">
+                <span class="glyphicon glyphicon-education"></span>
+             </span>
+         </div>
+             <input type="number"  min="0" max="100" required class="form-control form-rounded" name="editStudentGrade"  id="editStudentGrade" placeholder="Student Grade">
+         <div class="error"></div>
+     </div>
+
+     <div class="footer">
+                 <button type="button" class="btn btn-secondary" onclick="$('#modal').hide()" data-dismiss="modal">Close</button>
+                 <button type="button"  class=" saveEdit btn btn-primary">Save changes</button>
+    </div>
+                 </div>
+             </div>
+          </div>
+    </div>
+         <div id="deleteModal" class="deleteConfirmation col-xs-12" tabindex="-1" role="dialog">
+             <div class="modal-dialog" role="document">
+                 <div id="confirmDeleteBackground" class="modal-content">
+                     <!--<div class="modal-header">-->
+                         <!--<h5 class="modal-title">Modal title</h5>-->
+                         <!--&lt;!&ndash;<button type="button" class="close" data-dismiss="modal" aria-label="Close">&ndash;&gt;-->
+                             <!--&lt;!&ndash;<span aria-hidden="true">&times;</span>&ndash;&gt;-->
+                         <!--&lt;!&ndash;</button>&ndash;&gt;-->
+                     <!--</div>-->
+                     <div class="modal-body">
+                         <p> Are you sure you want to delete?</p>
+                     </div>
+                     <div class="modal-footer">
+                         <!--<button type="button" class="deleteTest btn btn-primary" onclick="removeStudent()" >Save changes</button>-->
+                         <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
                      </div>
                  </div>
              </div>

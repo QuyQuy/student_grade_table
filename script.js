@@ -27,8 +27,9 @@ function editStudent() {
             getData();
             closeModal();
         },
-        error: function (error) {
+        error: function (errorResponse) {
             console.log('error', error)
+            $('.errorModal').css('display','block')
         }
     }
     $.ajax(editAjax)
@@ -84,7 +85,9 @@ function getData() {
         console.log('response:',response);
         student_array = response.data;
         updateStudentList()
-    });
+    }).fail(function(errorResponse) {
+
+    })
 };
 
 function addClickHandlersToElements(){
@@ -93,6 +96,7 @@ function addClickHandlersToElements(){
     $('.btn btn-primary').click(handleGetData);
     $('#addButton').click(validateForm);
     $('.saveEdit').click(editValidateForm);
+    // $('.deleteTest').click(removeStudent(studentId))
     // $('.saveEdit').click(editStudent)
 }
 
@@ -107,6 +111,7 @@ function clearErros(){
 }
 
 function addStudent(){
+    debugger;
     console.log('hey');
     var obj =  {
         name:$('#studentName').val(),
@@ -132,7 +137,14 @@ function addStudent(){
         clearAddStudentFormInputs();
         updateStudentList();
 
-    });
+        // error: function (errorResponse) {
+        //     console.log('error', error)
+        //     $('.errorModal').css('display','block')
+        // }
+
+    }).fail(function() {
+        $('.errorModal').css('display','block')
+    })
 
 }
 // $('input[name=contactEmail]').val(),
@@ -171,18 +183,19 @@ function renderStudentOnDom(studentObj) {
         text: 'Delete',
         idNumber: studentObj.id,
         class: 'delete btn btn-danger',
-        click: function(){
-            deleteModal(studentId)
-        }
-        // on: {
-        //     click: function() {
-        //         deleteModal(studentId)
-        //     }
-        //     // click:  () => {
-        //         removeStudent(studentId);
-        //     // }
-        //
+        // click: function(){
+        //     deleteModal(studentId)
         // }
+        on: {
+            click: function() {
+                deleteModal(studentObj)
+                // deleteFunction(studentObj.id);
+            }
+            // click:  () => {
+            //     removeStudent(studentId);
+            // }
+
+        }
     });
     var editButton = $('<button>', {
         type: 'button',
@@ -236,14 +249,18 @@ function calculateGradeAverage(){
     // $('.avgGrade').append(totalGrade);
 
 
+
+
      return roundedAverage
 }
 function renderGradeAverage() {
+    if(student_array.length > 0) {
+        $('.avgGrade').text(calculateGradeAverage);
+    } else {
+        $('.avgGrade').text(0);
+    }
 
 
-    // console.log(number);
-    // $('.avgGrade').append(grade);
-    $('.avgGrade').text(calculateGradeAverage);
 
 }
 function handleGetData() {
@@ -257,6 +274,9 @@ function handleGetData() {
 
 
 function removeStudent(studentId) {
+    //
+    // var studentId = $('.deleteTest').data("ID");
+    // debugger;
 
 
     var deleteData = {
@@ -279,6 +299,7 @@ function removeStudent(studentId) {
         // getData()
         // renderStudentOnDom();
         deleteStudentFromDatabse()
+        closeConfirmModal()
     });
 }
 
@@ -407,12 +428,55 @@ function modal(ID) {
 
 }
 
-function deleteModal() {
-    console.log("ayyyyyyyyyyyyyoooooooooooo");
-    $('.deleteConfirmation').css('display,block');
+function deleteModal(studentObj) {
+    $('.deleteConfirmation').css('display','block');
+    var removeId = studentObj.id;
+    // var id = $(this).attr('idNumber')
+    var footerContainer  = $('<div>', {
+        class: 'text-center'
+    });
+
+    var confirmButton = $('<button>', {
+        class: 'btn btn-success text-center',
+        text: 'Confirm',
+        'studentId': studentObj.id,
+        on: {
+            click: () => removeStudent(removeId)
+        }
+    })
+    var cancelConfirm = $('<button>', {
+        class: "btn btn-danger",
+        text: 'Cancel',
+        on: {
+            click: () => closeConfirmModal()
+        }
+    })
+
+
+    footerContainer.append(confirmButton,cancelConfirm)
+    $('.modal-footer').append(footerContainer);
+
     // removeStudent(studentId);
 
 }
+function closeConfirmModal() {
+    $('.modal-footer').empty()
+    $('.deleteConfirmation').modal().hide()
+}
+
+// function deleteFunction() {
+//     debugger;
+//
+//     var yup = $('.deleteTest').attr("ID");
+//     var nameValue = $('#studentName').val();
+//     var courseValue = $('#course').val();
+//     var gradeValue = $('#studentGrade').val();
+//
+//
+//     console.log("Right here");
+//     // removeStudent(studentId);
+//     removeStudent(yup);
+// }
 
 
 

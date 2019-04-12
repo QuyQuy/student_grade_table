@@ -3,7 +3,6 @@ $(document).ready(initializeApp);
 
 
 function editStudent() {
-    debugger;
     // 'idNumber'
     var student_id = $(".saveEdit").attr("ID");
     // var student_id = $(this).attr("idNumber");
@@ -21,18 +20,24 @@ function editStudent() {
             name: nameValue,
             course: courseValue,
             grade: gradeValue
-        },
-        success: function (response) {
-            console.log("PLeaaaaaaase", response);
-            getData();
-            closeModal();
-        },
-        error: function (errorResponse) {
-            console.log('error', error)
-            $('.errorModal').css('display','block')
         }
+        // success: function (response) {
+        //     getData();
+        //     closeModal();
+        // },
+        // fail: function () {
+        //     console.log('error', error)
+        //     $('.error-modal').css('display','block')
+        // }
     }
-    $.ajax(editAjax)
+    $.ajax(editAjax).then(function () {
+        getData();
+        closeModal();
+    }).fail(function() {
+        $('.error-modal').css('display','block')
+
+    })
+
 }
 
 
@@ -88,16 +93,25 @@ function getData() {
     }).fail(function(errorResponse) {
 
     })
+
+
+    
 };
 
+function emptyData(){
+    console.log('array',student_array)
+    if(student_array > -1) {
+        $('.emptyData').css('display', 'block')
+    } else {
+        $('.emptyData').css('display', 'none')
+    }
+}
+
 function addClickHandlersToElements(){
-    // $('.btn.btn-success').click(handleAddClicked);
     $('.btn.btn-default').click(handleCancelClick);
     $('.btn btn-primary').click(handleGetData);
     $('#addButton').click(validateForm);
     $('.saveEdit').click(editValidateForm);
-    // $('.deleteTest').click(removeStudent(studentId))
-    // $('.saveEdit').click(editStudent)
 }
 
 
@@ -111,8 +125,7 @@ function clearErros(){
 }
 
 function addStudent(){
-    debugger;
-    console.log('hey');
+    console.log('addStudent');
     var obj =  {
         name:$('#studentName').val(),
         course:$('#course').val(),
@@ -129,6 +142,9 @@ function addStudent(){
             course:$('#course').val(),
             grade:$('#studentGrade').val()
         }
+        // error: function(errorResponse) {
+        //     $('.errorModal').modal('show');
+        // }
     };
     $.ajax(newStudentData).then(function (response) {
         console.log("check it yo",response);
@@ -137,14 +153,18 @@ function addStudent(){
         clearAddStudentFormInputs();
         updateStudentList();
 
-        // error: function (errorResponse) {
-        //     console.log('error', error)
-        //     $('.errorModal').css('display','block')
-        // }
 
-    }).fail(function() {
-        $('.errorModal').css('display','block')
+    }).fail(function(errorResponse) {
+        if(errorResponse.status === 500) {
+
+            // $('.errorModal').css('display', 'block')
+            $("#error-text").text('error right now')
+        }
+
+        $('.error-modal').css('display', 'block')
     })
+
+
 
 }
 // $('input[name=contactEmail]').val(),
@@ -182,6 +202,7 @@ function renderStudentOnDom(studentObj) {
         type: 'button',
         text: 'Delete',
         idNumber: studentObj.id,
+        id: 'deleteButton',
         class: 'delete btn btn-danger',
         // click: function(){
         //     deleteModal(studentId)
@@ -231,9 +252,17 @@ function updateStudentList(){
 
     }
 
+    // if (student_array < 0) {
+    //     // $('.hide').css('display', 'none')
+    //     $('.hide').css('display', 'block')
+    // } else {
+    //     $('.hide').css('display', 'none')
+    // }
+
 
     calculateGradeAverage();
     renderGradeAverage()
+    emptyData()
 
 
 }
@@ -257,7 +286,7 @@ function renderGradeAverage() {
     if(student_array.length > 0) {
         $('.avgGrade').text(calculateGradeAverage);
     } else {
-        $('.avgGrade').text(0);
+        $('.avgGrade').text('-');
     }
 
 
@@ -276,7 +305,6 @@ function handleGetData() {
 function removeStudent(studentId) {
     //
     // var studentId = $('.deleteTest').data("ID");
-    // debugger;
 
 
     var deleteData = {
@@ -300,7 +328,15 @@ function removeStudent(studentId) {
         // renderStudentOnDom();
         deleteStudentFromDatabse()
         closeConfirmModal()
-    });
+    }).fail(function(errorResponse) {
+        if(errorResponse.status === 500) {
+
+            // $('.errorModal').css('display', 'block')
+            $("#error-text").text('error right now')
+        }
+
+        $('.error-modal').css('display', 'block')
+    })
 }
 
 function deleteStudentFromDatabse() {
@@ -426,10 +462,16 @@ function modal(ID) {
 
 
 
+
+}
+
+function closeEditModal() {
+    $(".editModal").css('display', 'none');
 }
 
 function deleteModal(studentObj) {
     $('.deleteConfirmation').css('display','block');
+    // document.getElementBy('#deleteButton').disabled = true;
     var removeId = studentObj.id;
     // var id = $(this).attr('idNumber')
     var footerContainer  = $('<div>', {
@@ -465,7 +507,7 @@ function closeConfirmModal() {
 }
 
 // function deleteFunction() {
-//     debugger;
+//
 //
 //     var yup = $('.deleteTest').attr("ID");
 //     var nameValue = $('#studentName').val();
@@ -479,7 +521,12 @@ function closeConfirmModal() {
 // }
 
 
+function closeErrorModal() {
+    $('.error-modal').css('display', 'none')
+    closeConfirmModal();
+    closeEditModal();
 
+}
 
 
 

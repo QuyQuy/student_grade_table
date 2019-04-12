@@ -56,7 +56,8 @@
         <button type="button" class=" col-lg-4 col-md-4 col-sm-4 col-xs-  btn btn-primary" onclick="window.location.reload()">Get Data</button>
     </form>
 
-     <div>
+
+             <div>
         <div id="modal"  class=" editModal col-xs-12">
           <div class="modal-dialog modal-dialog-centered" role="document">
              <div class="modal-content">
@@ -83,25 +84,6 @@
              <input type="text" class="form-control form-rounded" name="editCourse"  id="editCourse" placeholder="Student Course">
          <div class="error"></div>
      </div>
-         <div class="errorModal" tabindex="-1" role="dialog">
-             <div class="modal-dialog" role="document">
-                 <div class="modal-content">
-                     <div class="modal-header">
-                         <h5 class="modal-title">Modal title</h5>
-                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                             <span aria-hidden="true">&times;</span>
-                         </button>
-                     </div>
-                     <div class="modal-body">
-                         <p>Modal body text goes here.</p>
-                     </div>
-                     <div class="modal-footer">
-                         <button type="button" class="btn btn-primary">Save changes</button>
-                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                     </div>
-                 </div>
-             </div>
-         </div>
 
 
      <div class="form-group input-group col-xs-12 col-lg-12">
@@ -122,25 +104,21 @@
              </div>
           </div>
     </div>
-         <div id="deleteModal" class="deleteConfirmation col-xs-12" tabindex="-1" role="dialog">
-             <div class="modal-dialog" role="document">
-                 <div id="confirmDeleteBackground" class="modal-content">
-                     <!--<div class="modal-header">-->
-                         <!--<h5 class="modal-title">Modal title</h5>-->
-                         <!--&lt;!&ndash;<button type="button" class="close" data-dismiss="modal" aria-label="Close">&ndash;&gt;-->
-                             <!--&lt;!&ndash;<span aria-hidden="true">&times;</span>&ndash;&gt;-->
-                         <!--&lt;!&ndash;</button>&ndash;&gt;-->
-                     <!--</div>-->
-                     <div class="modal-body">
-                         <p> Are you sure you want to delete?</p>
+         <div id="errorModal" class="error-modal col-xs-12" tabindex="-1" role="dialog">
+             <div class="error-dialog col-xs-12" role="document">
+                 <div id="errorContent" class="error-content">
+                         <!--<div class="modal-header">-->
+                     <div class="error-body">
+                         <p> Error while loading data. Please try again in a few minutes</p>
                      </div>
-                     <div class="modal-footer">
-                         <!--<button type="button" class="deleteTest btn btn-primary" onclick="removeStudent()" >Save changes</button>-->
-                         <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                     <div class="error-footer">
+                             <!--<button type="button" class="deleteTest btn btn-primary" onclick="removeStudent()" >Save changes</button>-->
+                         <button type="button" class=" col-lg-2 cancel-error  btn btn-dark" onclick="closeErrorModal()">Close</button>
                      </div>
                  </div>
              </div>
          </div>
+
     <div class=" page-header media-heading student-list-container col-xs-12 col-sm-12 col-md-9 col-lg-9">
         <table class="student-list col-lg-11">
             <thead>
@@ -154,10 +132,70 @@
             <tbody id="studentContent">
             </tbody>
           </table>
+        <div class="col-lg-12">
+            <p class="emptyData">No Student Data</p>
+        </div>
       </div>
-         <div class="image hidden-xs hidden col-lg-2 pull-right">
-             <img class="asu-logo" src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a1/Arizona_State_University_seal.svg/1200px-Arizona_State_University_seal.svg.png" alt=" ASU logo">
-         </div>
+                 <div class="col-xs-12 col-md-12 col-lg-12">
+                     <div class="col-lg-12 col-md-12 col-xs-12 deleteContainer">
+                         <div id="deleteModal" class="deleteConfirmation col-xs-12 col-md-12  col-xs-12" tabindex="-1" role="dialog">
+                             <div class="modal-dialog col-lg-12 col-md-12 " role="document">
+                                 <div id="confirmDeleteBackground" class="modal-content">
+                                     <!--<div class="modal-header">-->
+                                     <div class="modal-body ">
+                                         <p> Are you sure you want to delete?</p>
+                                     </div>
+                                     <div class="modal-footer ">
+                                         <!--<button type="button" class="deleteTest btn btn-primary" onclick="removeStudent()" >Save changes</button>-->
+                                         <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+
+                     </div>
+
+                 </div>
+
+             <!--</div>-->
+                 <!--<div class="col-xs-12 col-md-12 col-lg-12">-->
+                     <!--<div class="col-lg-12 col-md-12 col-xs-12 deleteContainer">-->
+                         <!--<div id="deleteModal" class="deleteConfirmation col-xs-12 col-md-12  col-xs-12" tabindex="-1" role="dialog">-->
+                             <!--<div class="modal-dialog col-lg-12 col-md-12 " role="document">-->
+                                 <!--<div id="confirmDeleteBackground" class="modal-content">-->
+                                     <!--&lt;!&ndash;<div class="modal-header">&ndash;&gt;-->
+                                     <!--<div class="modal-body ">-->
+                                         <!--<p> Are you sure you want to delete?</p>-->
+                                     <!--</div>-->
+                                     <!--<div class="modal-footer ">-->
+                                         <!--&lt;!&ndash;<button type="button" class="deleteTest btn btn-primary" onclick="removeStudent()" >Save changes</button>&ndash;&gt;-->
+                                         <!--&lt;!&ndash;<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>&ndash;&gt;-->
+                                     <!--</div>-->
+                                 <!--</div>-->
+                             <!--</div>-->
+                         <!--</div>-->
+
+                     <!--</div>-->
+
+                 <!--</div>-->
+
+                 <!--<div class="col-lg-12 col-md-12 col-xs-12 deleteContainer">-->
+                     <!--<div id="deleteModal" class="deleteConfirmation col-xs-12 col-md-12  col-xs-12" tabindex="-1" role="dialog">-->
+                         <!--<div class="modal-dialog col-lg-12 col-md-12 " role="document">-->
+                             <!--<div id="confirmDeleteBackground" class="modal-content">-->
+                                 <!--&lt;!&ndash;<div class="modal-header">&ndash;&gt;-->
+                                 <!--<div class="modal-body ">-->
+                                     <!--<p> Are you sure you want to delete?</p>-->
+                                 <!--</div>-->
+                                 <!--<div class="modal-footer ">-->
+                                     <!--&lt;!&ndash;<button type="button" class="deleteTest btn btn-primary" onclick="removeStudent()" >Save changes</button>&ndash;&gt;-->
+                                     <!--&lt;!&ndash;<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>&ndash;&gt;-->
+                                 <!--</div>-->
+                             <!--</div>-->
+                         <!--</div>-->
+                     <!--</div>-->
+
+                 <!--</div>-->
    </div>
  </div>
 </div>

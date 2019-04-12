@@ -4,6 +4,7 @@
 
 }
 
+
 .editModal {
     position: absolute;
     z-index: 1;
@@ -11,6 +12,40 @@
     top: 133px;
     height: 220px;
     width: 602px
+    display: none;
+
+}
+.error-modal {
+    position: absolute;
+    z-index: 2;
+    left: 368px;
+    top: 133px;
+    height: 220px;
+    width: 602px;
+    display: block;
+    background-color: lightgray;
+    transform: translate(-50%, -50%)
+
+}
+
+.error-body {
+    font-size: 2.1rem;
+    text-align: center;
+    top: 26%;
+    position: absolute;
+}
+
+.cancel-error{
+    text-align: center;
+    position: absolute;
+    top: 59%;
+    left: 39%;
+}
+.error-content {
+    background-color: white;
+    width: 100%
+}
+#errorModal {
     display: none;
 }
 .input-group .form-control:not(:first-child):not(:last-child), .input-group-addon:not(:first-child):not(:last-child), .input-group-btn:not(:first-child):not(:last-child) {
@@ -28,17 +63,40 @@
     text-align: center;
     font-size: 21.1px;
 }
-
-#deleteModal {
-    position: absolute;
+/*.errorModal{*/
+    /*display: block;*/
+/*}*/
+.deleteContainer {
     z-index: 1;
-    left: 368px;
-    top: 133px;
-    height: 220px;
-    width: 602px;
 }
+.emptyData {
+    display: block;
+    font-size: 3.1rem;
+    color: white;
+    text-align: center;
+}
+#deleteModal {
+    left: 27%;
+    position: fixed;
+    z-index: 1;
+    /* left: 368px; */
+    width: 602px;
+    /* width: 590px; */
+    bottom: 0px;
+    /* transform: translate(-50%, -50%); */
+}
+/*#errorModal {*/
+    /*z-index: 1;*/
+    /*height: 220px;*/
+    /*width: 602px;*/
+    /*background-color: white;*/
+    /*display: block;*/
+/*}*/
 .deleteConfirmation{
     display: none;
+}
+#error-text {
+    font-size: 3rem;
 }
 
 .edit {
@@ -85,6 +143,11 @@ td, th {
     right: 95px;
     top: 381px;
 }
+/*.hide {*/
+    /*color: white;*/
+    /*display: none;*/
+
+/*}*/
 /*#studentContent {*/
     /*overflow-y: scroll;*/
     /*overflow-x: scroll;*/
@@ -140,7 +203,7 @@ td, th {
 @media only screen  and (min-width: 400px) {
     .editModal {
         position: absolute;
-        z-index: 2;
+        z-index: 1;
         left: 28px;
         top: 133px;
         height: 220px;

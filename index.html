@@ -11,7 +11,7 @@
      </head>
      <body class="background">
        <div class="container col-xs-12 col-lg-12">
-         <div class="col-xs-12 col-lg-12">
+         <!--<div class="col-xs-12 col-lg-12">-->
              <div class=" page-header media-heading col-xs-12 col-lg-12">
         <!-- only show this element when the isnt on mobile -->
              <h1 class=" title hidden-xs col-md-12 col-lg-12">Student Grade Table
@@ -22,88 +22,126 @@
               <small class="  gradeTitle col-xs-offset-3 pull-right  hidden-md hidden-lg hidden-xl">Grade Average : <span class="avgGrade"></span></small>
              </h3>
     </div>
-    <form name="myForm" class=" student-add-form col-xs-12 col-sm-12 col-md-3 pull-left col-lg-3 pull-right">
-        <h4 class=" addStudentTitle">Add Student</h4>
-        <div class="form-group input-group col-xs-12 col-md-12 col-lg-12">
-            <div>
+           <form name="myForm" class=" student-add-form col-xs-12 col-sm-12 col-md-3 pull-left col-lg-3 pull-right">
+               <h4 class=" addStudentTitle">Add Student</h4>
+               <div class="form-group input-group col-xs-12 col-md-12 col-lg-12">
+                   <div>
                  <span class="input-group-addon">
                     <span class="glyphicon glyphicon-user"></span>
                   </span>
-            </div>
-            <input  type="text" class="form-control form-rounded"  name="studentName" id="studentName" placeholder="Student Name">
-            <div class="error"></div>
-        </div>
-        <div class=" form-group input-group col-xs-12 col-lg-12">
-            <div>
+                   </div>
+                   <input  type="text" class="form-control form-rounded"  name="studentName" id="studentName" placeholder="Student Name">
+                   <div class="error"></div>
+               </div>
+               <div class=" form-group input-group col-xs-12 col-lg-12">
+                   <div>
                 <span class="input-group-addon">
                    <span class="glyphicon glyphicon-list-alt"></span>
                 </span>
-            </div>
-            <input type="text" class="form-control form-rounded"  name="course" id="course" placeholder="Student Course">
-            <div class="error"></div>
-        </div>
-        <div class="form-group input-group col-xs-12 col-lg-12">
-            <div>
+                   </div>
+                   <input type="text" class="form-control form-rounded"  name="course" id="course" placeholder="Student Course">
+                   <div class="error"></div>
+               </div>
+               <div class="form-group input-group col-xs-12 col-lg-12">
+                   <div>
                 <span class="input-group-addon">
                    <span class="glyphicon glyphicon-education"></span>
                 </span>
-            </div>
-            <input type="number"  min="0" max="100" required class="form-control form-rounded" name="studentGrade" id="studentGrade" placeholder="Student Grade">
-            <div class="error"></div>
-        </div>
-        <button type="button" id="addButton" class=" col-lg-4 col-md-3 col-sm-4 col-xs-3  btn btn-success">Add</button>
-        <button type="button" class=" col-lg-4 col-md-4 col-sm-4 col-xs-3 btn btn-default">Cancel</button>
-        <button type="button" class=" col-lg-4 col-md-4 col-sm-4 col-xs-  btn btn-primary" onclick="window.location.reload()">Get Data</button>
-    </form>
+                   </div>
+                   <input type="number"  min="0" max="100" required class="form-control form-rounded" name="studentGrade" id="studentGrade" placeholder="Student Grade">
+                   <div class="error"></div>
+               </div>
+               <button type="button" id="addButton" class=" col-lg-4 col-md-3 col-sm-4 col-xs-3  btn btn-success">Add</button>
+               <button type="button" class=" col-lg-4 col-md-4 col-sm-4 col-xs-3 btn btn-default">Cancel</button>
+               <button type="button" class=" col-lg-4 col-md-4 col-sm-4 col-xs-  btn btn-primary" onclick="window.location.reload()">Get Data</button>
+           </form>
+           <div id="modal"  class=" editModal col-xs-12">
+               <div class="modal-dialog modal-dialog-centered" role="document">
+                   <div class="modal-content">
+                       <div class="modal-header">
+                           <h5 class="modal-title col-xs-12" id="exampleModalLongTitle"> Edit Student</h5>
+                       </div>
+                       <div class="modal-body">
+                           <div class="form-group input-group col-xs-12 col-lg-12">
+                               <div>
+                                   <span class="input-group-addon">
+                                       <span class="glyphicon glyphicon-user"></span>
+                                   </span>
+                               </div>
+                               <input  type="text" class="form-control form-rounded" name="editStudentName" id="editStudentName"  placeholder="Student Name">
+                               <div class="error"></div>
+                       </div>
+                           <div class=" form-group input-group col-xs-12 col-lg-12">
+                               <div>
+                                   <span class="input-group-addon">
+                                       <span class="glyphicon glyphicon-list-alt"></span>
+                                   </span>
+                               </div>
+                               <input type="text" class="form-control form-rounded" name="editCourse"  id="editCourse" placeholder="Student Course">
+                               <div class="error"></div>
+                           </div>
+                           <div class="form-group input-group col-xs-12 col-lg-12">
+                               <div>
+                                   <span class="input-group-addon">
+                                       <span class="glyphicon glyphicon-education"></span>
+                                   </span>
+                               </div>
+                               <input type="number"  min="0" max="100" required class="form-control form-rounded" name="editStudentGrade"  id="editStudentGrade" placeholder="Student Grade">
+                               <div class="error"></div>
+                           </div>
+                           <div class="footer">
+                               <button type="button" class="btn btn-secondary" onclick="$('#modal').hide()" data-dismiss="modal">Close</button>
+                               <button type="button"  class=" saveEdit btn btn-primary">Save changes</button>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div class="deleteConfirmation col-xs-8 col-sm-6 col-md-6 col-lg-6" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+               <div class="delete-dialog delete-dialog-centered" role="document">
+                   <div class="delete-container">
+                       <!--<div class="modal-content col-xs-12 col-md-12 col-lg-12" id="confirmDeleteBackground">-->
+                           <div class="modal-body" id="exampleModalLabel">
+                               <p> Are you sure you want to delete? </p>
+                           </div>
+                       <!--</div>-->
+                       <div class="modal-footer">
+                           <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                           <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <!--<div class="col-xs-12 col-sm-12 col-md-9 col-lg-6 color">-->
+               <!--<div class="col-lg-12 col-md-12 col-xs-12 deleteContainer">-->
+                   <!--<div id="deleteModal" class="deleteConfirmation col-xs-12 col-md-12  col-xs-12" tabindex="-1" role="dialog">-->
+                       <!--<div class="delete-dialog col-lg-12 col-md-12 " role="document">-->
+                           <!--<div id="confirmDeleteBackground" class="modal-content">-->
+                               <!--&lt;!&ndash;<div class="modal-header">&ndash;&gt;-->
+                               <!--<div class="modal-body ">-->
+                                   <!--<p> Are you sure you want to delete?</p>-->
+                               <!--</div>-->
+                               <!--<div class="modal-footer ">-->
+                                   <!--&lt;!&ndash;<button type="button" class="deleteTest btn btn-primary" onclick="removeStudent()" >Save changes</button>&ndash;&gt;-->
+                                   <!--&lt;!&ndash;<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>&ndash;&gt;-->
+                               <!--</div>-->
+                           <!--</div>-->
+                       <!--</div>-->
+                   <!--</div>-->
+
+               <!--</div>-->
+
+           <!--</div>-->
 
 
-             <div>
-        <div id="modal"  class=" editModal col-xs-12">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-             <div class="modal-content">
-   <div class="modal-header">
-         <h5 class="modal-title col-xs-12" id="exampleModalLongTitle"> Edit Student</h5>
-
-    </div>
-     <div class="modal-body">
-     <div class="form-group input-group col-xs-12 col-lg-12">
-         <div>
-             <span class="input-group-addon">
-               <span class="glyphicon glyphicon-user"></span>
-            </span>
-         </div>
-     <input  type="text" class="form-control form-rounded" name="editStudentName" id="editStudentName"  placeholder="Student Name">
-         <div class="error"></div>
-     </div>
-     <div class=" form-group input-group col-xs-12 col-lg-12">
-         <div>
-             <span class="input-group-addon">
-                <span class="glyphicon glyphicon-list-alt"></span>
-             </span>
-         </div>
-             <input type="text" class="form-control form-rounded" name="editCourse"  id="editCourse" placeholder="Student Course">
-         <div class="error"></div>
-     </div>
 
 
-     <div class="form-group input-group col-xs-12 col-lg-12">
-         <div>
-             <span class="input-group-addon">
-                <span class="glyphicon glyphicon-education"></span>
-             </span>
-         </div>
-             <input type="number"  min="0" max="100" required class="form-control form-rounded" name="editStudentGrade"  id="editStudentGrade" placeholder="Student Grade">
-         <div class="error"></div>
-     </div>
 
-     <div class="footer">
-                 <button type="button" class="btn btn-secondary" onclick="$('#modal').hide()" data-dismiss="modal">Close</button>
-                 <button type="button"  class=" saveEdit btn btn-primary">Save changes</button>
-    </div>
-                 </div>
-             </div>
-          </div>
-    </div>
+
+
+
+
+
          <div id="errorModal" class="error-modal col-xs-12" tabindex="-1" role="dialog">
              <div class="error-dialog col-xs-12" role="document">
                  <div id="errorContent" class="error-content">
@@ -136,32 +174,10 @@
             <p class="emptyData">No Student Data</p>
         </div>
       </div>
-                 <div class="col-xs-12 col-md-12 col-lg-12">
-                     <div class="col-lg-12 col-md-12 col-xs-12 deleteContainer">
-                         <div id="deleteModal" class="deleteConfirmation col-xs-12 col-md-12  col-xs-12" tabindex="-1" role="dialog">
-                             <div class="modal-dialog col-lg-12 col-md-12 " role="document">
-                                 <div id="confirmDeleteBackground" class="modal-content">
-                                     <!--<div class="modal-header">-->
-                                     <div class="modal-body ">
-                                         <p> Are you sure you want to delete?</p>
-                                     </div>
-                                     <div class="modal-footer ">
-                                         <!--<button type="button" class="deleteTest btn btn-primary" onclick="removeStudent()" >Save changes</button>-->
-                                         <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-                                     </div>
-                                 </div>
-                             </div>
-                         </div>
-
-                     </div>
-
-                 </div>
-
-             <!--</div>-->
-                 <!--<div class="col-xs-12 col-md-12 col-lg-12">-->
+                 <!--<div class="col-xs-12 col-sm-12 col-md-9 col-lg-6 color">-->
                      <!--<div class="col-lg-12 col-md-12 col-xs-12 deleteContainer">-->
                          <!--<div id="deleteModal" class="deleteConfirmation col-xs-12 col-md-12  col-xs-12" tabindex="-1" role="dialog">-->
-                             <!--<div class="modal-dialog col-lg-12 col-md-12 " role="document">-->
+                             <!--<div class="delete-dialog col-lg-12 col-md-12 " role="document">-->
                                  <!--<div id="confirmDeleteBackground" class="modal-content">-->
                                      <!--&lt;!&ndash;<div class="modal-header">&ndash;&gt;-->
                                      <!--<div class="modal-body ">-->
@@ -178,26 +194,26 @@
                      <!--</div>-->
 
                  <!--</div>-->
+           <!--<div class="col-xs-12 col-sm-12 col-md-9 col-lg-6 color">-->
+               <!--<div class="col-lg-12 col-md-12 col-xs-12 deleteContainer">-->
+                   <!--<div id="deleteModal" class="deleteConfirmation col-xs-12 col-md-12  col-xs-12" tabindex="-1" role="dialog">-->
+                       <!--<div class="delete-dialog col-lg-12 col-md-12 " role="document">-->
+                           <!--<div id="confirmDeleteBackground" class="modal-content">-->
+                               <!--&lt;!&ndash;<div class="modal-header">&ndash;&gt;-->
+                               <!--<div class="modal-body ">-->
+                                   <!--<p> Are you sure you want to delete?</p>-->
+                               <!--</div>-->
+                               <!--<div class="modal-footer ">-->
+                                   <!--&lt;!&ndash;<button type="button" class="deleteTest btn btn-primary" onclick="removeStudent()" >Save changes</button>&ndash;&gt;-->
+                                   <!--&lt;!&ndash;<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>&ndash;&gt;-->
+                               <!--</div>-->
+                           <!--</div>-->
+                       <!--</div>-->
+                   <!--</div>-->
 
-                 <!--<div class="col-lg-12 col-md-12 col-xs-12 deleteContainer">-->
-                     <!--<div id="deleteModal" class="deleteConfirmation col-xs-12 col-md-12  col-xs-12" tabindex="-1" role="dialog">-->
-                         <!--<div class="modal-dialog col-lg-12 col-md-12 " role="document">-->
-                             <!--<div id="confirmDeleteBackground" class="modal-content">-->
-                                 <!--&lt;!&ndash;<div class="modal-header">&ndash;&gt;-->
-                                 <!--<div class="modal-body ">-->
-                                     <!--<p> Are you sure you want to delete?</p>-->
-                                 <!--</div>-->
-                                 <!--<div class="modal-footer ">-->
-                                     <!--&lt;!&ndash;<button type="button" class="deleteTest btn btn-primary" onclick="removeStudent()" >Save changes</button>&ndash;&gt;-->
-                                     <!--&lt;!&ndash;<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>&ndash;&gt;-->
-                                 <!--</div>-->
-                             <!--</div>-->
-                         <!--</div>-->
-                     <!--</div>-->
+               <!--</div>-->
 
-                 <!--</div>-->
-   </div>
- </div>
+           <!--</div>-->
 </div>
   </body>
 </html>

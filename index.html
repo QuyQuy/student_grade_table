@@ -53,9 +53,9 @@
                </div>
                <button type="button" id="addButton" class=" col-lg-4 col-md-3 col-sm-4 col-xs-3  btn btn-success">Add</button>
                <button type="button" class=" col-lg-4 col-md-4 col-sm-4 col-xs-3 btn btn-default">Cancel</button>
-               <button type="button" class=" col-lg-4 col-md-4 col-sm-4 col-xs-  btn btn-primary" onclick="window.location.reload()">Get Data</button>
+               <!--<button type="button" class=" col-lg-4 col-md-4 col-sm-4 col-xs-  btn btn-primary" onclick="window.location.reload()">Get Data</button>-->
            </form>
-           <div id="modal"  class=" editModal col-xs-12">
+           <div id="modal"  class=" editModal col-xs-12 col-sm-12 col-md-12 col-lg-12">
                <div class="modal-dialog modal-dialog-centered" role="document">
                    <div class="modal-content">
                        <div class="modal-header">
@@ -97,40 +97,46 @@
                    </div>
                </div>
            </div>
-           <div class="deleteConfirmation col-xs-8 col-sm-6 col-md-6 col-lg-9" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-               <div class="delete-dialog delete-dialog-centered" role="document">
-                   <div class="delete-container">
-                       <!--<div class="modal-content col-xs-12 col-md-12 col-lg-12" id="confirmDeleteBackground">-->
-                           <div class="modal-body" id="exampleModalLabel">
-                               <p> Are you sure you want to delete? </p>
+           <div id="deleteModal"  class=" deleteConfirmation col-xs-12 col-sm-12 col-md-12 col-lg-12">
+               <div class="modal-dialog modal-dialog-centered" role="document">
+                   <div class="modal-content">
+                       <div class="modal-header">
+                           <h5 class="modal-title col-xs-12" id="deleteTitle"> Delete Student Details</h5>
+                       </div>
+                       <div class="modal-body">
+                           <div class="form-group input-group col-xs-12 col-lg-12">
+                               <div>
+                                   <span class="input-group-addon">
+                                       <span class="glyphicon glyphicon-user"></span>
+                                   </span>
+                               </div>
+                               <input  type="text" class="form-control form-rounded" name="deleteName" id="deleteName" disabled="true"  placeholder="Student Name" >
+                               <div class="error"></div>
                            </div>
-                       <!--</div>-->
-                       <div class="modal-footer">
-                           <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-                           <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+                           <div class=" form-group input-group col-xs-12 col-lg-12">
+                               <div>
+                                   <span class="input-group-addon">
+                                       <span class="glyphicon glyphicon-list-alt"></span>
+                                   </span>
+                               </div>
+                               <input type="text" class="form-control form-rounded" name="deleteCourse"  id="deleteCourse" disabled="true" placeholder="Student Course" >
+                               <div class="error"></div>
+                           </div>
+                           <div class="form-group input-group col-xs-12 col-lg-12">
+                               <div>
+                                   <span class="input-group-addon">
+                                       <span class="glyphicon glyphicon-education"></span>
+                                   </span>
+                               </div>
+                               <input type="number"  min="0" max="100" required class="form-control form-rounded" name="deleteStudentGrade" disabled="true"  id="deleteStudentGrade" placeholder="Student Grade" value="${grade.text()}">
+                               <div class="error"></div>
+                           </div>
+                           <div class="modal-footer">
+                           </div>
                        </div>
                    </div>
                </div>
            </div>
-           <!--<div class="error-modal" id="errorModal" tabindex="-1" role="dialog">-->
-               <!--<div class="modal-dialog" role="document">-->
-                   <!--<div class="modal-content">-->
-                       <!--<div class="modal-header">-->
-                           <!--<h5 class="modal-title">Modal title</h5>-->
-                           <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-                               <!--<span aria-hidden="true">&times;</span>-->
-                           <!--</button>-->
-                       <!--</div>-->
-                       <!--<div class="modal-body">-->
-                           <!--<p>Modal body text goes here.</p>-->
-                       <!--</div>-->
-                       <!--<div class="modal-footer">-->
-                           <!--<button type="button" class="btn btn-primary">Save changes</button>-->
-                           <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-                       <!--</div>-->
-                   <!--</div>-->
-               <!--</div>-->
-           <!--</div>-->
        <div id="errorModal" class="error-modal col-xs-8 col-sm-6 col-lg-6" tabindex="-1" role="dialog">
              <div class="error-dialog col-xs-12" role="document">
                  <div id="errorContent" class="error-content">
@@ -146,13 +152,13 @@
          </div>
 
     <div class=" page-header media-heading student-list-container col-xs-12 col-sm-12 col-md-9 col-lg-9">
-        <table class="student-list col-lg-11">
+        <table class="student-list col-lg-12">
             <thead>
             <tr>
-                <th class=" name col-xs-4 col-md-4 col-lg-3">Student Name</th>
-                <th class="course col-xs-4 col-md-4 col-lg-3">Student Course</th>
-                <th class="grade col-xs-4 col-md-4 col-lg-3">Student Grade</th>
-                <th class="operations col-xs-4 col-md-4 col-lg-3">Operations</th>
+                <th class=" name ">Student Name</th>
+                <th class="course " >Student Course</th>
+                <th class="grade ">Student Grade</th>
+                <th class="operations ">Operations</th>
             </tr>
             </thead>
             <tbody id="studentContent">

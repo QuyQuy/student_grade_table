@@ -3,18 +3,31 @@
     height: 100%;
 
 }
+#course {
+    padding-left: 3%;
+
+}
 
 
 .editModal {
-    position: absolute;
-    z-index: 1;
-    left: 368px;
-    top: 133px;
-    height: 220px;
-    width: 602px;
-    display: none;
+    /*position: absolute;*/
+    /*z-index: 1;*/
+    /*!*left: 368px;*!*/
+    /*!*top: 133px;*!*/
+    /*height: 220px;*/
+    /*width: 602px;*/
+    /*display: none;*/
 
 }
+.course-info {
+   padding-left: 3%;
+}
+.grade-info {
+    padding-left: 15%;
+}
+/*#class-info {*/
+    /*padding-left: 4%;*/
+/*}*/
 .error-modal {
     top: 57%;
     left: 26%;
@@ -92,18 +105,13 @@
     /*bottom: 0px;*/
 }
 .deleteConfirmation{
-    top: 57%;
-    left: 26%;
+    /*top: 57%;*/
+    /*left: 26%;*/
     position: absolute;
     z-index: 1;
-    /*left: 368px;*/
-    /*top: 133px;*/
-    /*height: 220px;*/
-    /*width: 602px;*/
+
     display: block;
-    background-color: lightgray;
-    /*transform: translate(-50%, -50%)*/
-    /*display: none;*/
+    /*background-color: lightgray;*/
 }
 /*.deleteContainer {*/
     /*z-index: 1;*/
@@ -187,8 +195,16 @@ td, th {
     /*overflow-x: scroll;*/
 /*}*/
 .modal-content {
-    background-color: darkgrey;
+    background-color: black;
+    border-color: white;
 }
+.modal-title {
+    color: gold;
+    font-size: 21px;
+    text-align: center;
+    bottom: 11px;
+}
+
 .title{
     color: gold;
 }
@@ -217,8 +233,11 @@ td, th {
 #exampleModalLongTitle {
     font-size: 26px;
     position: relative;
-    margin-left: 184px;
+    margin-left: 51px;
     color: gold;
+    bottom: 15px;
+    text-align: center;
+    right: 61px;;
 }
 .media-heading{
     overflow-x: scroll;

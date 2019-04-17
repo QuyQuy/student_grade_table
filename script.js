@@ -188,16 +188,31 @@ function renderStudentOnDom(studentObj) {
     var studentId = studentObj.id;
     console.log("student id", studentId);
 
-    var tr = $("<tr>");
+    var tr = $("<tr>")
     var name = $("<td>", {
-        text: studentObj.name
+        text: studentObj.name,
+        class: '  col-xs-3'
     });
     var course = $('<td>', {
-        text: studentObj.course
+        text: studentObj.course,
+        class: ' course-info  col-xs-3'
     });
     var grade = $('<td>', {
-        text: studentObj.grade
+        text: studentObj.grade,
+        class: 'grade-info col-xs-3'
     });
+    var tableContainer = $('<td>', {
+
+    });
+
+    tableContainer.append(grade);
+    tr.append(name,course,grade, tableContainer );
+
+
+    var deleteContainer = $('<td>', {
+        class: 'col-xs-3',
+        id: 'deleteContainer'
+    })
     var deleteButton = $('<button>', {
         type: 'button',
         text: 'Delete',
@@ -234,10 +249,9 @@ function renderStudentOnDom(studentObj) {
             modal(studentObj.id);
         }
     });
-
-
-
-    tr.append(name,course,grade,deleteButton,editButton);
+    tableContainer.append(grade);
+    deleteContainer.append(deleteButton,editButton);
+    tr.append(deleteContainer);
     $('#studentContent').append(tr);
 
 }
@@ -473,6 +487,13 @@ function deleteModal(studentObj) {
     $('.deleteConfirmation').css('display','block');
     // document.getElementBy('#deleteButton').disabled = true;
     var removeId = studentObj.id;
+    var name = studentObj.name;
+    var course = studentObj.course;
+    var grade =studentObj.grade;
+
+    $('#deleteName').val(name);
+    $('#deleteCourse').val(course);
+    $('#deleteStudentGrade').val(grade);
     // var id = $(this).attr('idNumber')
     var footerContainer  = $('<div>', {
         class: 'text-center'

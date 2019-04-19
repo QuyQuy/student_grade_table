@@ -20,28 +20,21 @@
 
 }
 .course-info {
-   padding-left: 3%;
+   /*padding-left: 2%;*/
 }
-.grade-info {
-    padding-left: 15%;
+td:nth-child(3) {
+    padding-left: 7%;
 }
-/*#class-info {*/
-    /*padding-left: 4%;*/
-/*}*/
+
+
+
 .error-modal {
     top: 57%;
     left: 26%;
     position: absolute;
     z-index: 1;
-    /* left: 368px; */
-    /* top: 133px; */
-    /* height: 220px; */
-    /* width: 602px; */
     display: block;
     background-color: red;
-    /* transform: translate(-50%, -50%); */
-    /* display: none; */
-    /* width: 52%; */
     height: 25%;
 
 }
@@ -117,8 +110,9 @@
     /*z-index: 1;*/
 /*}*/
 .delete {
-    margin-top: 10px;
-    margin-left: 54px;
+    margin: 3px;
+    /*margin-top: 10px;*/
+    /*margin-left: 54px;*/
 }
 /*.delete {*/
     /*margin-top: 10px;*/
@@ -142,9 +136,9 @@
 }
 
 .edit {
-    position: absolute;
-    margin-top: 10px;
-    margin-left: -142px;
+
+    /*margin-top: 10px;*/
+    /*margin-left: -142px;*/
     width: 66px;
 
 }
@@ -242,14 +236,31 @@ td, th {
 .media-heading{
     overflow-x: scroll;
 }
+
+@media only screen and  (max-width: 1451px) and (min-width: 1203px) {
+    td:nth-child(3) {
+        padding-left: 10%;
+    }
+}
 @media only screen and (max-width: 1202px) and (min-width: 1150px) {
     .error-body {
         font-size: 2.0rem;
+    }
+    td:nth-child(3) {
+        padding-left: 14%;
     }
 }
 @media only screen and (max-width: 1149px) and (min-width: 1101px) {
     .error-body {
         font-size: 1.7rem;
+    }
+    td:nth-child(3) {
+        padding-left: 13%;
+    }
+}
+@media only screen and (max-width: 1100px) and (min-width: 1001px) {
+    td:nth-child(3) {
+        padding-left: 14%;
     }
 }
 @media only screen and (max-width: 1000px) and (min-width: 700px) {
@@ -259,6 +270,9 @@ td, th {
     }
     .cancel-error {
         top: 76px;
+    }
+    td:nth-child(3) {
+        padding-left: 14%;
     }
 }
 
@@ -282,6 +296,9 @@ td, th {
     }
     .cancel-error {
         top: 91px;
+    }
+    td:nth-child(3) {
+        padding-left: 12%;
     }
 }
 @media only screen and (max-height: 569px) and (min-height: 567px) {

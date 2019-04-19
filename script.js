@@ -3,6 +3,7 @@ $(document).ready(initializeApp);
 
 
 function editStudent() {
+    debugger
     // 'idNumber'
     var student_id = $(".saveEdit").attr("ID");
     // var student_id = $(this).attr("idNumber");
@@ -191,15 +192,14 @@ function renderStudentOnDom(studentObj) {
     var tr = $("<tr>")
     var name = $("<td>", {
         text: studentObj.name,
-        class: '  col-xs-3'
     });
     var course = $('<td>', {
         text: studentObj.course,
-        class: ' course-info  col-xs-3'
+        class: ' course-info'
     });
-    var grade = $('<td>', {
+    var grade = $('<span>', {
         text: studentObj.grade,
-        class: 'grade-info col-xs-3'
+        id: 'grade-info '
     });
     var tableContainer = $('<td>', {
 
@@ -219,17 +219,11 @@ function renderStudentOnDom(studentObj) {
         idNumber: studentObj.id,
         id: 'deleteButton',
         class: 'delete btn btn-danger',
-        // click: function(){
-        //     deleteModal(studentId)
-        // }
         on: {
             click: function() {
                 deleteModal(studentObj)
                 // deleteFunction(studentObj.id);
             }
-            // click:  () => {
-            //     removeStudent(studentId);
-            // }
 
         }
     });
@@ -238,12 +232,6 @@ function renderStudentOnDom(studentObj) {
         text: 'Edit',
         idNumber: studentObj.id,
         class: 'edit btn btn-primary',
-        // on: {
-        //     click: () => {
-        //         modal(studentObj.id);
-        //     }
-        //
-        // }
         click: function(){
             showEditModal(studentObj);
             modal(studentObj.id);

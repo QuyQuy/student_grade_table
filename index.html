@@ -30,7 +30,7 @@
                     <span class="glyphicon glyphicon-user"></span>
                   </span>
                    </div>
-                   <input  type="text" class="form-control form-rounded"  name="studentName" id="studentName" placeholder="Student Name">
+                   <input  type="text" class="form-control form-rounded"  name="studentName" id="studentName" placeholder="Student Name" oninput="validateForm()">
                    <div class="error"></div>
                </div>
                <div class=" form-group input-group col-xs-12 col-lg-12">
@@ -39,7 +39,7 @@
                    <span class="glyphicon glyphicon-list-alt"></span>
                 </span>
                    </div>
-                   <input type="text" class="form-control form-rounded"  name="course" id="course" placeholder="Student Course">
+                   <input type="text" class="form-control form-rounded"  name="course" id="course" placeholder="Student Course" oninput="validateForm()">
                    <div class="error"></div>
                </div>
                <div class="form-group input-group col-xs-12 col-lg-12">
@@ -48,7 +48,7 @@
                    <span class="glyphicon glyphicon-education"></span>
                 </span>
                    </div>
-                   <input type="number"  min="0" max="100" required class="form-control form-rounded" name="studentGrade" id="studentGrade" placeholder="Student Grade">
+                   <input type="number"  min="0" max="100" required class="form-control form-rounded" name="studentGrade" id="studentGrade" placeholder="Student Grade" oninput="validateForm()">
                    <div class="error"></div>
                </div>
                <button type="button" id="addButton" class=" col-lg-4 col-md-3 col-sm-4 col-xs-3  btn btn-success">Add</button>
@@ -155,7 +155,7 @@
         <table class="student-list col-lg-12">
             <thead>
             <tr>
-                <th class=" name ">Student Name</th>
+                <th class=" name">Student Name</th>
                 <th class="course " >Student Course</th>
                 <th class="grade ">Student Grade</th>
                 <th class="operations ">Operations</th>

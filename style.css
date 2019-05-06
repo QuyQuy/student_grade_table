@@ -23,7 +23,9 @@
    /*padding-left: 2%;*/
 }
 td:nth-child(3) {
-    padding-left: 7%;
+    text-align: right;
+    width: 23%;
+    padding-right: 16%;
 }
 
 

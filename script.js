@@ -13,7 +13,7 @@ function editStudent() {
     var gradeValue = $('#editStudentGrade').val();
 
     var editAjax = {
-        url: "http://localhost:8888/student_grade_table/server/updatestudent.php",
+        url: "server/updatestudent.php",
         method: "POST",
         data: {
 
@@ -80,7 +80,7 @@ function getData() {
     console.log("here is my get data")
     var ajaxOptions = {
         // url: 'http://s-apis.learningfuze.com/sgt/get',
-        url: "http://localhost:8888/student_grade_table/server/getstudents.php",
+        url: "server/getstudents.php",
         method: 'post',
         dataType: 'json',
         // data: {
@@ -134,7 +134,7 @@ function addStudent(){
     };
 
     var newStudentData = {
-        url: 'http://localhost:8888/student_grade_table/server/createstudent.php',
+        url: 'server/createstudent.php',
         method: 'post',
         dataType: 'json',
         data: {
@@ -310,7 +310,7 @@ function removeStudent(studentId) {
 
 
     var deleteData = {
-        url: 'http://localhost:8888/student_grade_table/server/deletestudent.php',
+        url: 'server/deletestudent.php',
         method: 'post',
         dataType: 'json',
         data: {
@@ -344,7 +344,7 @@ function removeStudent(studentId) {
 function deleteStudentFromDatabse() {
     var ajaxOptions = {
         // url: 'http://s-apis.learningfuze.com/sgt/get',
-        url: "http://localhost:8888/student_grade_table/server/getstudents.php",
+        url: "server/getstudents.php",
         method: 'post',
         dataType: 'json',
         data: {
@@ -515,19 +515,7 @@ function closeConfirmModal() {
     $('.deleteConfirmation').modal().hide()
 }
 
-// function deleteFunction() {
-//
-//
-//     var yup = $('.deleteTest').attr("ID");
-//     var nameValue = $('#studentName').val();
-//     var courseValue = $('#course').val();
-//     var gradeValue = $('#studentGrade').val();
-//
-//
-//     console.log("Right here");
-//     // removeStudent(studentId);
-//     removeStudent(yup);
-// }
+
 
 
 function closeErrorModal() {

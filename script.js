@@ -6,7 +6,6 @@ function editStudent() {
     debugger
     // 'idNumber'
     var student_id = $(".saveEdit").attr("ID");
-    // var student_id = $(this).attr("idNumber");
 
     var nameValue = $('#editStudentName').val();
     var courseValue = $('#editCourse').val();
@@ -22,14 +21,6 @@ function editStudent() {
             course: courseValue,
             grade: gradeValue
         }
-        // success: function (response) {
-        //     getData();
-        //     closeModal();
-        // },
-        // fail: function () {
-        //     console.log('error', error)
-        //     $('.error-modal').css('display','block')
-        // }
     }
     $.ajax(editAjax).then(function () {
         getData();
@@ -47,7 +38,6 @@ function closeModal(){
     $('#modal').css("display","none");
 }
 function showEditModal(studentObj){
-    console.log("heypooooooooooo")
     var id = $(this).attr('idNumber')
     $('#editStudentName').val(studentObj.name);
     $('#editCourse').val(studentObj.course);
@@ -70,25 +60,18 @@ function initializeApp(){
     addClickHandlersToElements();
     getData();
 
-    // inputValidation();
 }
 
 
 
 
 function getData() {
-    console.log("here is my get data")
     var ajaxOptions = {
-        // url: 'http://s-apis.learningfuze.com/sgt/get',
         url: "server/getstudents.php",
         method: 'post',
         dataType: 'json',
-        // data: {
-        //     api_key: 'AQ076PX9UZ'
-        // }
     };
     $.ajax(ajaxOptions).then(function (response) {
-        console.log('response:',response);
         student_array = response.data;
         updateStudentList()
     }).fail(function(errorResponse) {
@@ -100,7 +83,6 @@ function getData() {
 };
 
 function emptyData(){
-    console.log('array',student_array)
     if(student_array > -1) {
         $('.emptyData').css('display', 'block')
     } else {
@@ -126,7 +108,6 @@ function clearErros(){
 }
 
 function addStudent(){
-    console.log('addStudent');
     var obj =  {
         name:$('#studentName').val(),
         course:$('#course').val(),
@@ -143,12 +124,8 @@ function addStudent(){
             course:$('#course').val(),
             grade:$('#studentGrade').val()
         }
-        // error: function(errorResponse) {
-        //     $('.errorModal').modal('show');
-        // }
     };
     $.ajax(newStudentData).then(function (response) {
-        console.log("check it yo",response);
         student_array.push(obj);
         obj.id = response.new_id;
         clearAddStudentFormInputs();
@@ -158,7 +135,6 @@ function addStudent(){
     }).fail(function(errorResponse) {
         if(errorResponse.status === 500) {
 
-            // $('.errorModal').css('display', 'block')
             $("#error-text").text('error right now')
         }
 
@@ -168,26 +144,17 @@ function addStudent(){
 
 
 }
-// $('input[name=contactEmail]').val(),
-//     subject: $('input[name=subject]').val(),
-//     message: $('textarea[name=message]').val(),
 
-
-console.log('student Array:', student_array);
 
 function clearAddStudentFormInputs() {
     $('#studentName').val("");
-    //formrounded.val
     $('#course').val("");
     $('#studentGrade').val("");
-    // $('#editStudentName').val("")
-    // $('#editCourse').val("")
-    // $('#editStudentGrade').val("")
+
 }
 
 function renderStudentOnDom(studentObj) {
     var studentId = studentObj.id;
-    console.log("student id", studentId);
 
     var tr = $("<tr>")
     var name = $("<td>", {
@@ -250,18 +217,7 @@ function updateStudentList(){
     for ( var studentInfo = 0; studentInfo < student_array.length; studentInfo++) {
         var row =  $("<tr>");
         renderStudentOnDom(student_array[studentInfo]);
-
-
     }
-
-    // if (student_array < 0) {
-    //     // $('.hide').css('display', 'none')
-    //     $('.hide').css('display', 'block')
-    // } else {
-    //     $('.hide').css('display', 'none')
-    // }
-
-
     calculateGradeAverage();
     renderGradeAverage()
     emptyData()
@@ -270,14 +226,12 @@ function updateStudentList(){
 }
 function calculateGradeAverage(){
     var totalGrade =  0;
-    console.log(totalGrade);
     for (var i = 0; i < student_array.length; i++ ) {
         var integer = parseInt(student_array[i].grade);
         totalGrade += integer;
     }
     var average = totalGrade / student_array.length;
-    var roundedAverage = average.toFixed(2);
-    // $('.avgGrade').append(totalGrade);
+        var roundedAverage = average.toFixed(2);
 
 
 
@@ -299,15 +253,9 @@ function handleGetData() {
 
 }
 
-// create a function that edits the students.
-//create a modal to edit the user info
-//
 
 
 function removeStudent(studentId) {
-    //
-    // var studentId = $('.deleteTest').data("ID");
-
 
     var deleteData = {
         url: 'server/deletestudent.php',
@@ -320,20 +268,14 @@ function removeStudent(studentId) {
 
     };
     $.ajax(deleteData).then(function(response) {
-        console.log('look here',studentId);
         if(response.success) {
             student_array.splice(studentId,1)
         }
-        console.log("herrro",response);
-        // updateStudentList();
-        // getData()
-        // renderStudentOnDom();
         deleteStudentFromDatabse()
         closeConfirmModal()
     }).fail(function(errorResponse) {
         if(errorResponse.status === 500) {
 
-            // $('.errorModal').css('display', 'block')
             $("#error-text").text('error right now')
         }
 
@@ -343,7 +285,6 @@ function removeStudent(studentId) {
 
 function deleteStudentFromDatabse() {
     var ajaxOptions = {
-        // url: 'http://s-apis.learningfuze.com/sgt/get',
         url: "server/getstudents.php",
         method: 'post',
         dataType: 'json',
@@ -352,12 +293,10 @@ function deleteStudentFromDatabse() {
         }
     };
     $.ajax(ajaxOptions).then(function (response) {
-        console.log('response:',response);
         student_array = response.data;
         updateStudentList()
     })
 }
-
 
 
 function editValidateForm() {
@@ -387,13 +326,11 @@ function editValidateForm() {
 
     ];
     if( tests.length === tests.filter( editValidateInputAndDisplayError).length){
-        console.log("it worked!");
         editStudent();
         // saveEditStudent()
     }
 }
 function editValidateInputAndDisplayError( incomingTests ){
-    console.log("testing 69");
     const element = incomingTests.element, pattern = incomingTests.pattern, errorMessage = incomingTests.message;
     const value = $( element ).val();
     const result = pattern.test( value );
@@ -408,7 +345,6 @@ function editValidateInputAndDisplayError( incomingTests ){
 
 function validateForm() {
 
-   console.log('validation');
     const tests = [
         {
 
@@ -435,13 +371,11 @@ function validateForm() {
 
     ];
     if( tests.length === tests.filter( validateInputAndDisplayError).length){
-        console.log("it worked!");
         addStudent();
     }
 }
 
 function validateInputAndDisplayError( incomingTests ){
-    console.log("testing 69");
     const element = incomingTests.element, pattern = incomingTests.pattern, errorMessage = incomingTests.message;
     const value = $( element ).val();
     const result = pattern.test( value );
@@ -457,9 +391,7 @@ function validateInputAndDisplayError( incomingTests ){
 
 function modal(ID) {
 
-    console.log('modal');
     $(".editModal").css('display', 'block');
-    // editStudent()
     $(".saveEdit").attr("ID", ID);
 
 
@@ -473,7 +405,6 @@ function closeEditModal() {
 
 function deleteModal(studentObj) {
     $('.deleteConfirmation').css('display','block');
-    // document.getElementBy('#deleteButton').disabled = true;
     var removeId = studentObj.id;
     var name = studentObj.name;
     var course = studentObj.course;
@@ -482,7 +413,6 @@ function deleteModal(studentObj) {
     $('#deleteName').val(name);
     $('#deleteCourse').val(course);
     $('#deleteStudentGrade').val(grade);
-    // var id = $(this).attr('idNumber')
     var footerContainer  = $('<div>', {
         class: 'text-center'
     });
@@ -507,7 +437,6 @@ function deleteModal(studentObj) {
     footerContainer.append(confirmButton,cancelConfirm)
     $('.modal-footer').append(footerContainer);
 
-    // removeStudent(studentId);
 
 }
 function closeConfirmModal() {
